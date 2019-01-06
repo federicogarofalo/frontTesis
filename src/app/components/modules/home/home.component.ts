@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FrameService} from '../../../services/frame.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private frameService: FrameService) { }
 
   ngOnInit() {
+    this.frameService.getNodesPower().subscribe(
+      resp => {
+        console.log('Request worked');
+      },
+      err => {
+        console.log('Request did not work');
+      }
+    );
   }
 
 }
