@@ -17,6 +17,10 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 // Services
 import { AuthGuard } from './guards/auth-guard';
 import { FrameService } from './services/frame.service';
+import { NodesConfigComponent } from './components/modules/configuration/nodes-config/nodes-config.component';
+import { AlertsConfigComponent } from './components/modules/configuration/alerts-config/alerts-config.component';
+import { ThresholdsConfigComponent } from './components/modules/configuration/thresholds-config/thresholds-config.component';
+import { AlertsComponent } from './components/modules/alerts/alerts.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { FrameService } from './services/frame.service';
     TopbarComponent,
     HomeComponent,
     LoginComponent,
-    FooterComponent
+    FooterComponent,
+    NodesConfigComponent,
+    AlertsConfigComponent,
+    ThresholdsConfigComponent,
+    AlertsComponent
   ],
   imports: [
     BrowserModule,

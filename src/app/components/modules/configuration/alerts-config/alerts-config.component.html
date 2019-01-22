@@ -1,0 +1,60 @@
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="row">
+    <div class="page-title">
+
+      <div class="clearfix"></div>
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>
+              Configuraci�n de alertas<small></small>
+            </h2>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="x_content">
+
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered bulk_action">
+                <thead>
+                <tr class="headings">
+home
+                  <th class="column-title">Prioridad</th>
+                  <th class="column-title">Per�odo de tiempo</th>
+                  <th class="column-title">Cantidad de repeticiones</th>
+                  <th class="column-title no-link last"><span class="nobr">Acci�n</span>
+                  </th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr class="even pointer" ng-repeat="criticidad in criticidades">
+                  <td class=" ">{{criticidad.prioridad}}</td>
+                  <td class=" ">{{criticidad.periodoTiempo}}</td>
+                  <td><span ng-hide="criticidad.editMode">{{criticidad.cantidadRepeticiones}}</span>
+                    <input numbers-only type="text" name="cantRepeticiones"
+                           ng-show="criticidad.editMode" class="form-control"
+                           ng-model="criticidad.cantidadRepeticiones" placeholder=""
+                           required="" /></td>
+                  <td class="last"><a href="" ng-hide="criticidad.editMode"
+                                      ng-click="editCriticidad(criticidad)">Editar</a> <a href=""
+                                                                                          ng-show="criticidad.editMode"
+                                                                                          ng-click="updateCriticidad(criticidad)">Guardar</a>
+                    <a href="" ng-show="criticidad.editMode"
+                       ng-click="cancel(criticidad)">Cancelar</a></td>
+
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->

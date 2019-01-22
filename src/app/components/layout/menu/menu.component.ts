@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -9,9 +10,12 @@ export class MenuComponent implements OnInit {
 
   active = true;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  redirectTo(page: string) {
+    this.router.navigate([page]);
+  }
 }
