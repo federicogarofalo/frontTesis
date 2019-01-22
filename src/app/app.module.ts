@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing } from './app-routing';
 import { HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 // Components
 import { AppComponent } from './app.component';
@@ -41,6 +42,7 @@ import { AlertsComponent } from './components/modules/alerts/alerts.component';
     BrowserModule,
     routing,
     HttpClientModule,
+    FormsModule
   ],
   providers: [
     AuthGuard,
