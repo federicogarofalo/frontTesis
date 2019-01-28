@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
   selector: 'app-topbar',
@@ -9,12 +10,16 @@ export class TopbarComponent implements OnInit {
 
   userMenu = false;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
   toggleUserMenu() {
     this.userMenu = !this.userMenu;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

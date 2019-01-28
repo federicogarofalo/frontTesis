@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { AbstractHttpService } from './abstract-http-service';
 import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class AuthService extends AbstractHttpService {
 
   token: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     super();
   }
 
@@ -26,6 +27,7 @@ export class AuthService extends AbstractHttpService {
   logout(): void {
     localStorage.clear();
     this.loggedIn = false;
+    this.router.navigate(['login']);
   }
 
   isLoggedIn() {

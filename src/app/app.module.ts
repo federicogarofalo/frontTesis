@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing } from './app-routing';
-import { HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 // Components
@@ -22,6 +22,7 @@ import { NodesConfigComponent } from './components/modules/configuration/nodes-c
 import { AlertsConfigComponent } from './components/modules/configuration/alerts-config/alerts-config.component';
 import { ThresholdsConfigComponent } from './components/modules/configuration/thresholds-config/thresholds-config.component';
 import { AlertsComponent } from './components/modules/alerts/alerts.component';
+import {AuthTokenInterceptor} from './auth-token-interceptor';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { AlertsComponent } from './components/modules/alerts/alerts.component';
   providers: [
     AuthGuard,
     FrameService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
