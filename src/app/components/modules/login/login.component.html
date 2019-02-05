@@ -1,101 +1,63 @@
-<body class="login" >
-<div>
-  <a class="hiddenanchor" id="signup"></a>
-  <a class="hiddenanchor" id="signin"></a>
-
-
-  <div class="login_wrapper">
-    <div  class="animate form login_form">
-      <section class="login_content">
-        <form action="login" method="post" class="form-horizontal">
-          <h1>Login Form</h1>
-          <div>
-            <input type="text" [(ngModel)]="username" class="form-control" placeholder="Usuario" required="true" name="ssoId" />
+<body class="bg-light-gray" id="body">
+<div class="container d-flex flex-column justify-content-between vh-100">
+  <div class="row justify-content-center mt-5">
+    <div class="col-xl-5 col-lg-6 col-md-10">
+      <div class="card">
+        <div class="card-header bg-primary">
+          <div class="app-brand">
+            <a href="/index.html">
+              <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30"
+                   height="33" viewBox="0 0 30 33">
+                <g fill="none" fill-rule="evenodd">
+                  <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z" />
+                  <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
+                </g>
+              </svg>
+              <span class="brand-name">Sleek Dashboard</span>
+            </a>
           </div>
-          <div>
-            <input [(ngModel)]="password" type="password" class="form-control" placeholder="Contraseña" required="true" name="password"/>
-          </div>
-          <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
-          <div (click)="doLogin()">
-            <input type="submit" class="form-control btn btn-block btn-primary btn-default"
-                   style="margin-left: 0 !important" value="Log in">
-          </div>
+        </div>
+        <div class="card-body p-5">
+          <h4 class="text-dark mb-5">Sign Up</h4>
+          <form action="/index.html">
+            <div class="row">
+              <div class="form-group col-md-12 mb-4">
+                <input type="text" class="form-control input-lg" id="name" aria-describedby="nameHelp" placeholder="Name">
+              </div>
+              <div class="form-group col-md-12 mb-4">
+                <input [(ngModel)]="username" type="email" class="form-control input-lg" id="email" aria-describedby="emailHelp" placeholder="Username">
+              </div>
+              <div class="form-group col-md-12 ">
+                <input [(ngModel)]="username" type="password" class="form-control input-lg" id="password" placeholder="Password">
+              </div>
+              <div class="form-group col-md-12 ">
+                <input type="password" class="form-control input-lg" id="cpassword" placeholder="Confirm Password">
+              </div>
+              <div class="col-md-12">
+                <div class="d-inline-block mr-3">
+                  <label class="control control-checkbox">
+                    <input type="checkbox" />
+                    <div class="control-indicator"></div>
+                    I Agree the terms and conditions
+                  </label>
 
-          <div class="clearfix"></div>
+                </div>
+                <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Sign Up</button>
+                <p>Already have an account?
+                  <a class="text-blue" href="sign-in.html">Sign in</a>
+                </p>
+              </div>
+            </div>
+          </form>
 
-          <div class="separator">
-            <p class="change_link">No tienes una cuenta?
-              <a href="#signup" class="to_register"> Crear una cuenta </a>
-            </p>
-
-            <p class="change_link">Olvidó su contraseña?
-              <a href="cambiar-password" > Cambiar contraseña </a>
-            </p>
-
-            <div class="clearfix"></div>
-            <br />
-          </div>
-        </form>
-      </section>
+        </div>
+      </div>
     </div>
-
-    <!--<div id="register" class="animate form registration_form">-->
-<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
-<!--&lt;!&ndash;<html lang="en" ng-app="confUsuarios">&ndash;&gt;-->
-      <!--<section class="login_content">-->
-        <!--<form>-->
-          <!--<h1>Create Account</h1>-->
-          <!--<div>-->
-            <!--<input type="text" class="form-control" placeholder="usuario" required="" ng-model="nuevoUsuario.ssoId" />-->
-          <!--</div>-->
-          <!--<div>-->
-            <!--<input type="text" class="form-control" placeholder="Username" required="" ng-model="nuevoUsuario.firstName" />-->
-          <!--</div>-->
-          <!--<div>-->
-            <!--<input type="text" class="form-control" placeholder="Lastname" required="" ng-model="nuevoUsuario.lastName" />-->
-          <!--</div>-->
-          <!--<div>-->
-            <!--<input type="email" class="form-control" placeholder="Email" required="" ng-model="nuevoUsuario.email" />-->
-          <!--</div>-->
-          <!--<div>-->
-            <!--<input type="password" class="form-control" placeholder="Password" required="" ng-model="nuevoUsuario.password"/>-->
-          <!--</div>-->
-
-          <!--<div>-->
-            <!--<input type="submit" class="form-control btn btn-block btn-primary btn-default"-->
-                   <!--style="margin-left: 0 !important" value="Submit" ng-click="crearUsuario(nuevoUsuario)">-->
-          <!--</div>-->
-          <!--&lt;!&ndash;              <div>-->
-                          <!--<a class="btn btn-default submit" href="index.html">Submit</a>-->
-                        <!--</div>&ndash;&gt;-->
-
-          <!--<div class="clearfix"></div>-->
-
-          <!--<div class="separator">-->
-            <!--<p class="change_link">Already a member ?-->
-              <!--<a href="#signin" class="to_register"> Log in </a>-->
-            <!--</p>-->
-
-            <!--<div class="clearfix"></div>-->
-            <!--<br />-->
-
-            <!--&lt;!&ndash;                <div>-->
-                              <!--<h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>-->
-                              <!--<p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>-->
-                            <!--</div>&ndash;&gt;-->
-          <!--</div>-->
-        <!--</form>-->
-      <!--</section>-->
-    <!--</div>-->
-
+  </div>
+  <div class="copyright pl-0">
+    <p class="text-center">&copy; 2018 Copyright Sleek Dashboard Bootstrap Template by
+      <a class="text-primary" href="http://www.iamabdus.com/" target="_blank">Abdus</a>.
+    </p>
   </div>
 </div>
-
-<!--<%&#45;&#45;<%@include file="../layout/footer.jsp"%>&#45;&#45;%>-->
-<!--<script src="resources/angularjs/angular.js"></script>-->
-<!--<script src="resources/angularjs/home.js"></script>-->
-<!--<script src="resources/angularjs/confUsuarios.js"></script>-->
-<!--&lt;!&ndash; close container body and main container &ndash;&gt;-->
-
-<!--</body>-->
-<!--</html>-->
+</body>
