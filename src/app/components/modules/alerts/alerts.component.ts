@@ -12,6 +12,8 @@ export class AlertsComponent implements OnInit {
   fechaDesde = null;
   fechaHasta = null;
 
+  ae = false;
+
   constructor(private notificationService: NotificationService) { }
 
   ngOnInit() {

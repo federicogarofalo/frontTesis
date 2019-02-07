@@ -13,6 +13,17 @@ export class LoginComponent implements OnInit {
 
   password: string;
 
+  hasAccount = true;
+
+  newUser = {
+    name: '',
+    surname: '',
+    email: '',
+    userName: '',
+    pwd: '',
+    pwdConfirm: ''
+  };
+
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -32,5 +43,13 @@ export class LoginComponent implements OnInit {
       err => {
       }
     );
+  }
+
+  toggleHasAccount() {
+    this.hasAccount = !this.hasAccount;
+  }
+
+  createUser() {
+
   }
 }

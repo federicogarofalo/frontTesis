@@ -13,24 +13,68 @@
                   <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
                 </g>
               </svg>
-              <span class="brand-name">Sleek Dashboard</span>
+              <span class="brand-name">Bienvenido a PanSoft</span>
             </a>
           </div>
         </div>
-        <div class="card-body p-5">
-          <h4 class="text-dark mb-5">Sign Up</h4>
+        <div class="card-body p-5" *ngIf="hasAccount">
           <form action="/index.html">
             <div class="row">
               <div class="form-group col-md-12 mb-4">
                 <input [(ngModel)]="username" name="username" type="email" class="form-control input-lg"
-                       id="email" aria-describedby="emailHelp" placeholder="Username">
+                       id="email" aria-describedby="emailHelp" placeholder="Usuario">
               </div>
               <div class="form-group col-md-12 ">
                 <input [(ngModel)]="password" name="password" type="password" class="form-control input-lg"
-                       id="password" placeholder="Password">
+                       id="password" placeholder="Contraseña">
               </div>
               <div class="col-md-12">
-                <button (click)="doLogin()" type="submit" class="btn btn-lg btn-primary btn-block mb-4">Sign In</button>
+                <div class="d-flex my-2 justify-content-between">
+                  <div class="d-inline-block mr-3">
+                    <label class="control control-checkbox">Recordame
+                      <input type="checkbox" />
+                      <div class="control-indicator"></div>
+                    </label>
+
+                  </div>
+                  <p><a class="text-blue" href="#">Olvidaste tu contraseña?</a></p>
+                </div>
+                <button (click)="doLogin()" type="submit" class="btn btn-lg btn-primary btn-block mb-4">Ingresar</button>
+                <p>Todavía no tenes una cuenta ?
+                  <a class="text-blue" (click)="toggleHasAccount()" href="javascript:void(0)">Registrate</a>
+                </p>
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+        <div class="card-body p-5" *ngIf="!hasAccount">
+          <form action="/index.html">
+            <div class="row">
+              <div class="form-group col-md-12 mb-4">
+                <input [(ngModel)]="newUser.name" name="newUser-name" type="text" class="form-control input-lg" id="name" aria-describedby="nameHelp" placeholder="Nombre">
+              </div>
+              <div class="form-group col-md-12 mb-4">
+                <input [(ngModel)]="newUser.surname" name="newUser-surname" type="text" class="form-control input-lg" id="name" aria-describedby="nameHelp" placeholder="Apellido">
+              </div>
+              <div class="form-group col-md-12 mb-4">
+                <input [(ngModel)]="newUser.email" name="newUser-email" type="text" class="form-control input-lg" id="name" aria-describedby="nameHelp" placeholder="Email">
+              </div>
+              <div class="form-group col-md-12 mb-4">
+                <input [(ngModel)]="newUser.userName" name="newUser-userName" type="email" class="form-control input-lg" id="email" aria-describedby="emailHelp" placeholder="Usuario">
+              </div>
+              <div class="form-group col-md-12 ">
+                <input [(ngModel)]="newUser.pwd" name="newUser-pwd" type="password" class="form-control input-lg" id="password" placeholder="Contraseña">
+              </div>
+              <div class="form-group col-md-12 ">
+                <input [(ngModel)]="newUser.pwdConfirm" name="newUser-pwdConfirm" type="password" class="form-control input-lg" id="cpassword" placeholder="Confirmar Contraseña">
+              </div>
+              <div class="col-md-12">
+                <button (click)="createUser()" type="submit" class="btn btn-lg btn-primary btn-block mb-4">Registrate</button>
+                <p>Ya tenes una cuenta?
+                  <a class="text-blue" (click)="toggleHasAccount()" href="javascript:void(0)">Iniciar</a>
+                </p>
               </div>
             </div>
           </form>
