@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { routing } from './app-routing';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 // Components
 import { AppComponent } from './app.component';
@@ -43,7 +44,8 @@ import { AuthTokenInterceptor } from './auth-token-interceptor';
     BrowserModule,
     routing,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
   providers: [
     AuthGuard,

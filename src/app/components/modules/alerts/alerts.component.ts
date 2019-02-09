@@ -22,7 +22,6 @@ export class AlertsComponent implements OnInit {
   }
 
   startFilter() {
-    debugger;
     const today = new Date();
     const year = today.getFullYear();
     const month = today.getMonth();
