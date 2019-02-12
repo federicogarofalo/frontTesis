@@ -19,9 +19,9 @@ export class Frame {
   pvm: number;
   date: Date;
   hour: Time;
-  continuousPower: number;
-  internalPower: number;
-  networkPower: number;
+  continuousPower: number|number[];
+  internalPower: number|number[];
+  networkPower: number|number[];
   controlState: boolean;
 
   constructor(params: any) {

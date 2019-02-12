@@ -11,6 +11,7 @@ import {startWith, switchMap} from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
+  // Power Bars Chart
   nodesPower = {
     continuousPower: 0,
     internalPower: 0,
@@ -35,14 +36,38 @@ export class HomeComponent implements OnInit {
   barChartLegend = true;
   barChartData: any[];
 
+  // Last 10 Power Measures line Chart
+  continuousPower;
+  internalPower;
+  networkPower;
+
+  lineChartOptions: any = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          callback: function (value) {
+            return value + ' Watts';
+          }
+        }
+      }]
+    }
+  };
+  lineChartLabels: string[] = ['10', '9', '8', '7', '6', '5', '4', '3', '2', '1'];
+  lineChartType = 'line';
+  lineChartLegend = true;
+  lineChartData: any[];
+
   constructor(private frameService: FrameService) { }
 
   ngOnInit() {
     this.getNodesPower();
+    this.getLastNodesPower();
   }
 
   getNodesPower() {
-    interval(10000).pipe(startWith(0), switchMap(() => this.frameService.getNodesPower()))
+    interval(30000).pipe(startWith(0), switchMap(() => this.frameService.getNodesPower()))
       .subscribe(resp => {
       const self = this;
       this.nodesPower = {continuousPower: 0, internalPower: 0, networkPower: 0};
@@ -60,5 +85,36 @@ export class HomeComponent implements OnInit {
     }, err => {
       console.log('Request did not work');
     });
+  }
+
+  getLastNodesPower() {
+    interval(30000).pipe(startWith(0), switchMap(() => this.frameService.getLastPowerMeasurementByNode()))
+      .subscribe(resp => {
+        const sumC = [];
+        const sumI = [];
+        const sumN = [];
+        _.forEach(resp, function (node) {
+          node.continuousPower = node.continuousPower.split(',').map(Number);
+          sumC.push(node.continuousPower);
+          node.internalPower = node.internalPower.split(',').map(Number);
+          sumI.push(node.internalPower);
+          node.networkPower = node.networkPower.split(',').map(Number);
+          sumN.push(node.networkPower);
+        });
+        function sum_columns(data) {
+          return _.map(_.unzip(data), _.sum);
+        }
+
+        this.continuousPower = sum_columns(sumC).reverse();
+        this.internalPower = sum_columns(sumI).reverse();
+        this.networkPower = sum_columns(sumN).reverse();
+        this.lineChartData = [
+          {data: this.continuousPower, label: 'Potencia Continua', fill: false},
+          {data: this.internalPower, label: 'Potencia Interna', fill: false},
+          {data: this.networkPower, label: 'Potencia Red', fill: false}
+        ];
+      }, err => {
+        console.log('Request did not work');
+      });
   }
 }
