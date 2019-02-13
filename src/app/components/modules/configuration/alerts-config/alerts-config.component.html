@@ -1,60 +1,57 @@
-<!-- page content -->
-<div class="right_col" role="main">
-  <div class="row">
-    <div class="page-title">
-
-      <div class="clearfix"></div>
-
-      <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-          <div class="x_title">
-            <h2>
-              Configuraci�n de alertas<small></small>
-            </h2>
-            <div class="clearfix"></div>
+<div class="content-wrapper">
+  <div class="content">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card card-default">
+          <div class="card-header card-header-border-bottom">
+            <h2>Configuración de Alertas</h2>
           </div>
-
-          <div class="x_content">
-
-            <div class="table-responsive">
-              <table class="table table-striped table-bordered bulk_action">
-                <thead>
-                <tr class="headings">
-home
-                  <th class="column-title">Prioridad</th>
-                  <th class="column-title">Per�odo de tiempo</th>
-                  <th class="column-title">Cantidad de repeticiones</th>
-                  <th class="column-title no-link last"><span class="nobr">Acci�n</span>
-                  </th>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Prioridad</th>
+                  <th scope="col">Período de Tiempo</th>
+                  <th scope="col">Cantidad de Repeticiones</th>
+                  <th scope="col"></th>
                 </tr>
-                </thead>
-
-                <tbody>
-                <tr class="even pointer" ng-repeat="criticidad in criticidades">
-                  <td class=" ">{{criticidad.prioridad}}</td>
-                  <td class=" ">{{criticidad.periodoTiempo}}</td>
-                  <td><span ng-hide="criticidad.editMode">{{criticidad.cantidadRepeticiones}}</span>
-                    <input numbers-only type="text" name="cantRepeticiones"
-                           ng-show="criticidad.editMode" class="form-control"
-                           ng-model="criticidad.cantidadRepeticiones" placeholder=""
-                           required="" /></td>
-                  <td class="last"><a href="" ng-hide="criticidad.editMode"
-                                      ng-click="editCriticidad(criticidad)">Editar</a> <a href=""
-                                                                                          ng-show="criticidad.editMode"
-                                                                                          ng-click="updateCriticidad(criticidad)">Guardar</a>
-                    <a href="" ng-show="criticidad.editMode"
-                       ng-click="cancel(criticidad)">Cancelar</a></td>
-
+              </thead>
+              <tbody>
+                <tr *ngFor="let severity of severities" (keyup.enter)="updateNode(severity)"
+                    (keyup.esc)="cancelEdition(severity)">
+                  <td>{{ severity.priority }}</td>
+                  <td>{{ severity.period }}</td>
+                  <td>
+                    <span [hidden]="severity['editMode']">{{ severity.reps }}</span>
+                    <input type="text" name="description"
+                           [hidden]="!severity['editMode']" class="form-control"
+                           [(ngModel)]="severity.reps"
+                           required="" />
+                  </td>
+                  <td class="text-right">
+                    <div class="dropdown show d-inline-block widget-dropdown">
+                      <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order5"
+                         data-toggle="dropdown" aria-haspopup="true"
+                         aria-expanded="false" data-display="static"></a>
+                      <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order5">
+                        <li class="dropdown-item" *ngIf="!severity['editMode']">
+                          <a (click)="editNode(severity)" href="javascript:void(0)">Editar</a>
+                        </li>
+                        <li class="dropdown-item" *ngIf="severity['editMode']">
+                          <a (click)="updateNode(severity)" href="javascript:void(0)">Guardar</a>
+                        </li>
+                        <li class="dropdown-item" *ngIf="severity['editMode']">
+                          <a (click)="cancelEdition(severity)" href="javascript:void(0)">Cancelar</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
                 </tr>
-                </tbody>
-              </table>
-            </div>
-
-
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- /page content -->

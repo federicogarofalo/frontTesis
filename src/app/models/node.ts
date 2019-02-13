@@ -4,7 +4,7 @@ export class Node {
   isActive: boolean;
   description: string;
 
-  constructor(params) {
+  constructor(params: any) {
     this.module = params.modulo;
     this.number = params.numero;
     this.isActive = params.activo;

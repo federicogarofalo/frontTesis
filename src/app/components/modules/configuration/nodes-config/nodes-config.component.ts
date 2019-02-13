@@ -22,20 +22,21 @@ export class NodesConfigComponent implements OnInit {
     });
   }
 
-  editNode(node) {
+  editNode(node: Node) {
     node['originalValue'] = Object.assign({}, node);
     node['editMode'] = true;
   }
 
-  updateNode(node) {
+  updateNode(node: Node) {
     this.nodeService.updateNode(node).subscribe(res => {
       node = res;
+      node['editMode'] = false;
     }, err => {
       console.log(err);
     });
   }
 
-  cancelEdition(node) {
+  cancelEdition(node: Node) {
     Object.assign(node, node['originalValue']);
     node['editMode'] = false;
   }

@@ -7,7 +7,7 @@ export class Notification {
   value: number;
   thresholdExceeded: any;
   node: any;
-  criticality: any;
+  severity: any;
   visualize: boolean;
   date: Date;
   hour: Time;
@@ -19,7 +19,7 @@ export class Notification {
     this.value = params.valor;
     this.thresholdExceeded = params.umbralSuperado;
     this.node = params.nodo;
-    this.criticality = params.criticidad;
+    this.severity = params.criticidad;
     this.visualize = params.visualizar;
     this.date = params.fecha;
     this.hour = params.hora;
