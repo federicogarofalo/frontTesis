@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ThresholdService} from '../../../../services/threshold.service';
 import {Threshold} from '../../../../models/threshold';
+import {Severity} from '../../../../models/severity';
+import {SeverityService} from '../../../../services/severity.service';
 
 @Component({
   selector: 'app-thresholds-config',
@@ -10,12 +12,18 @@ import {Threshold} from '../../../../models/threshold';
 export class ThresholdsConfigComponent implements OnInit {
 
   thresholds: Threshold[];
+  severities: Severity[];
 
-  constructor(private thresholdService: ThresholdService) { }
+  constructor(private thresholdService: ThresholdService, private severityService: SeverityService) { }
 
-  ngOnInit() { debugger;
+  ngOnInit() {
     this.thresholdService.getThresholds().subscribe(thresholds => {
       this.thresholds = thresholds;
+    }, err => {
+      console.log(err);
+    });
+    this.severityService.getSeverities().subscribe( severities => {
+      this.severities = severities;
     }, err => {
       console.log(err);
     });
@@ -26,7 +34,7 @@ export class ThresholdsConfigComponent implements OnInit {
     threshold['editMode'] = true;
   }
 
-  updateNode(threshold: Threshold) {
+  updateThreshold(threshold: Threshold) {
     threshold.lastModification = this.getLocalISOTime();
     this.thresholdService.updateThreshold(threshold).subscribe(res => {
       threshold = res;

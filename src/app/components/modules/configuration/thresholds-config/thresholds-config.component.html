@@ -21,7 +21,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let threshold of thresholds" (keyup.enter)="updateNode(threshold)"
+                <tr *ngFor="let threshold of thresholds" (keyup.enter)="updateThreshold(threshold)"
                     (keyup.esc)="cancelEdition(threshold)">
                   <td>{{ getHumanRedableName(threshold.variableName) }}</td>
                   <td>{{ threshold.lastModification }}</td>
@@ -29,22 +29,25 @@
                     <span [hidden]="threshold['editMode']">{{ threshold.minValue }}</span>
                     <input [hidden]="!threshold['editMode']" numbers-only type="text"
                            class="form-control"
-                           [ngModel]="threshold.minValue"
+                           [(ngModel)]="threshold.minValue"
                            required="" />
                   </td>
                   <td>
                     <span [hidden]="threshold['editMode']">{{ threshold.maxValue }}</span>
                     <input [hidden]="!threshold['editMode']" numbers-only type="text"
                            class="form-control"
-                           [ngModel]="threshold.maxValue"
+                           [(ngModel)]="threshold.maxValue"
                            required="" />
                   </td>
                   <td>{{ threshold.unitOfMeasurement['nombre'] }}</td>
                   <td>
-                    <!--<span ng-hide="umbral.editMode">{{umbral.criticidad.prioridad}}</span>-->
-                    <!--<select class="btn btn-default" ng-show="umbral.editMode" ng-model="umbral.criticidad"-->
-                            <!--ng-options="crit.prioridad for crit in criticidades track by crit.id">-->
-                    <!--</select>-->
+                    <span [hidden]="threshold['editMode']">{{ threshold.severity.priority }}</span>
+                    <select [hidden]="!threshold['editMode']" class="form-control" [(ngModel)]="threshold.severity">
+                      <option *ngFor="let severity of severities"
+                              [ngValue]="severity"
+                              [selected]="threshold.severity.id === severity.id">{{ severity.priority }}
+                      </option>
+                    </select>
                   </td>
                   <td class="a-center">
                     <input [hidden]="threshold['editMode']"
@@ -52,7 +55,7 @@
                            [checked]="threshold.isActive">
                     <input [hidden]="!threshold['editMode']"
                            type="checkbox"
-                           [checked]="threshold.isActive" [(ngModel)]="threshold.isActive">
+                           [(checked)]="threshold.isActive" [(ngModel)]="threshold.isActive">
                   </td>
                   <td class="text-right">
                     <div class="dropdown show d-inline-block widget-dropdown">
@@ -64,7 +67,7 @@
                           <a (click)="editNode(threshold)" href="javascript:void(0)">Editar</a>
                         </li>
                         <li class="dropdown-item" *ngIf="threshold['editMode']">
-                          <a (click)="updateNode(threshold)" href="javascript:void(0)">Guardar</a>
+                          <a (click)="updateThreshold(threshold)" href="javascript:void(0)">Guardar</a>
                         </li>
                         <li class="dropdown-item" *ngIf="threshold['editMode']">
                           <a (click)="cancelEdition(threshold)" href="javascript:void(0)">Cancelar</a>

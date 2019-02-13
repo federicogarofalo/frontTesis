@@ -21,7 +21,7 @@
                 <tr *ngFor="let node of nodes" (keyup.enter)="updateNode(node)" (keyup.esc)="cancelEdition(node)">
                   <td>
                     <span [hidden]="node['editMode']">{{ node.module }}</span>
-                    <select [hidden]="!node['editMode']" class="form-control">
+                    <select [hidden]="!node['editMode']" class="form-control" [(ngModel)]="node.module">
                       <option [value]="module" *ngFor="let module of modules">{{ module }}</option>
                     </select>
                   </td>
@@ -39,7 +39,7 @@
                            [checked]="node.isActive">
                     <input [hidden]="!node['editMode']"
                            type="checkbox"
-                           [checked]="node.isActive" [(ngModel)]="node.isActive">
+                           [(checked)]="node.isActive" [(ngModel)]="node.isActive">
                   </td>
                   <td class="text-right">
                     <div class="dropdown show d-inline-block widget-dropdown">

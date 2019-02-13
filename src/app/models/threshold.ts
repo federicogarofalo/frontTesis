@@ -19,7 +19,7 @@ export class Threshold {
     this.lastModification = params.ultimaModificacion;
     this.variableName = params.nombreVariable;
     this.isActive = params.activo;
-    this.severity = params.criticidad;
+    this.severity = new Severity(params.criticidad);
     this.unitOfMeasurement = params.unidadMedida;
   }
 }

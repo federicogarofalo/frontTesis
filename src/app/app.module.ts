@@ -24,6 +24,8 @@ import { AlertsConfigComponent } from './components/modules/configuration/alerts
 import { ThresholdsConfigComponent } from './components/modules/configuration/thresholds-config/thresholds-config.component';
 import { AlertsComponent } from './components/modules/alerts/alerts.component';
 import { AuthTokenInterceptor } from './auth-token-interceptor';
+import { SeveritySelectorComponent } from './components/utils/severity-selector/severity-selector.component';
+import { NodeSelectorComponent } from './components/utils/node-selector/node-selector.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { AuthTokenInterceptor } from './auth-token-interceptor';
     NodesConfigComponent,
     AlertsConfigComponent,
     ThresholdsConfigComponent,
-    AlertsComponent
+    AlertsComponent,
+    SeveritySelectorComponent,
+    NodeSelectorComponent
   ],
   imports: [
     BrowserModule,
