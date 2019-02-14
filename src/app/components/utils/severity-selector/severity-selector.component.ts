@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SeverityService} from '../../../services/severity.service';
 import {Severity} from '../../../models/severity';
 
@@ -11,6 +11,7 @@ export class SeveritySelectorComponent implements OnInit {
 
   severities: Severity[];
   @Input() value: Severity;
+  @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private severityService: SeverityService) { }
 

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NodeService} from '../../../services/node.service';
 import {Node} from '../../../models/node';
 
@@ -11,6 +11,7 @@ export class NodeSelectorComponent implements OnInit {
 
   nodes: Node[];
   @Input() value: Node;
+  @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private nodeService: NodeService) { }
 

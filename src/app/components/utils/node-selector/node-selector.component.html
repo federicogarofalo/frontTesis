@@ -1,3 +1,3 @@
-<select class="form-control" [(ngModel)]="value">
+<select class="form-control" [(ngModel)]="value" (change)="onChange.emit(value)">
   <option *ngFor="let node of nodes">{{ node.module + ' ' + node.number }}</option>
 </select>
