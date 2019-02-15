@@ -1,4 +1,6 @@
 import {Time} from '@angular/common';
+import {Node} from './node';
+import {Severity} from './severity';
 
 export class Notification {
   id: number;
@@ -6,7 +8,7 @@ export class Notification {
   affectedVariable: string;
   value: number;
   thresholdExceeded: any;
-  node: any;
+  node: Node;
   severity: any;
   visualize: boolean;
   date: Date;
@@ -18,8 +20,8 @@ export class Notification {
     this.affectedVariable = params.variableAfectada;
     this.value = params.valor;
     this.thresholdExceeded = params.umbralSuperado;
-    this.node = params.nodo;
-    this.severity = params.criticidad;
+    this.node = new Node(params.nodo);
+    this.severity = new Severity(params.criticidad);
     this.visualize = params.visualizar;
     this.date = params.fecha;
     this.hour = params.hora;

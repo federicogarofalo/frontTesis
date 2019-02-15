@@ -3,6 +3,9 @@ import {AbstractHttpService} from './abstract-http-service';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Node} from '../models/node';
 import {Severity} from '../models/severity';
+import {map} from 'rxjs/operators';
+import {Notification} from '../models/notification';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +26,7 @@ export class NotificationService extends AbstractHttpService {
     if (severity) {
       params = params.set('criticidad', String(severity.priority));
     }
-    return this.http.get(this.baseUrl, { params: params });
+    return this.http.get(this.baseUrl + '/alertasPorFecha', { params: params });
   }
 
   getNotificationsByPeriod(from, to, severity?: Severity) {
@@ -33,6 +36,9 @@ export class NotificationService extends AbstractHttpService {
     if (severity) {
       params = params.set('prioridadCriticidad', String(severity.priority));
     }
-    return this.http.get(this.baseUrl, { params: params });
+    return this.http.get(this.baseUrl + '/alertas', { params: params }).pipe(
+      map(res => _.map(res, function(item) {
+        return new Notification(item);
+      })));
   }
 }

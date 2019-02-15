@@ -27,14 +27,14 @@
                   <td>{{ threshold.lastModification }}</td>
                   <td>
                     <span [hidden]="threshold['editMode']">{{ threshold.minValue }}</span>
-                    <input [hidden]="!threshold['editMode']" numbers-only type="text"
+                    <input [hidden]="!threshold['editMode']" numbers-only type="number"
                            class="form-control"
                            [(ngModel)]="threshold.minValue"
                            required="" />
                   </td>
                   <td>
                     <span [hidden]="threshold['editMode']">{{ threshold.maxValue }}</span>
-                    <input [hidden]="!threshold['editMode']" numbers-only type="text"
+                    <input [hidden]="!threshold['editMode']" numbers-only type="number"
                            class="form-control"
                            [(ngModel)]="threshold.maxValue"
                            required="" />

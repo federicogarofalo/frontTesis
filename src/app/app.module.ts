@@ -5,6 +5,8 @@ import { routing } from './app-routing';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ng6-toastr-notifications';
 
 // Components
 import { AppComponent } from './app.component';
@@ -26,6 +28,11 @@ import { AlertsComponent } from './components/modules/alerts/alerts.component';
 import { AuthTokenInterceptor } from './auth-token-interceptor';
 import { SeveritySelectorComponent } from './components/utils/severity-selector/severity-selector.component';
 import { NodeSelectorComponent } from './components/utils/node-selector/node-selector.component';
+import { NodeService } from './services/node.service';
+import { AuthService } from './services/auth.service';
+import { NotificationService } from './services/notification.service';
+import { SeverityService } from './services/severity.service';
+import { ThresholdService } from './services/threshold.service';
 
 @NgModule({
   declarations: [
@@ -49,11 +56,18 @@ import { NodeSelectorComponent } from './components/utils/node-selector/node-sel
     routing,
     HttpClientModule,
     FormsModule,
-    ChartsModule
+    ChartsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     AuthGuard,
+    AuthService,
     FrameService,
+    NodeService,
+    NotificationService,
+    SeverityService,
+    ThresholdService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
