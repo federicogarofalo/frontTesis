@@ -5,6 +5,7 @@ import {startWith, switchMap} from 'rxjs/operators';
 import {NotificationService} from './services/notification.service';
 import {ToastrService} from './services/toastr.service';
 import * as _ from 'lodash';
+import {AuthService} from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -15,11 +16,13 @@ export class AppComponent implements OnInit {
   title = 'frontTesis';
 
   constructor(private router: Router, private notificationService: NotificationService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.router.navigate(['/home']);
-    this.getNotifications();
+    if (this.authService.isLoggedIn()) {
+      this.getNotifications();
+    }
   }
 
   getNotifications() {

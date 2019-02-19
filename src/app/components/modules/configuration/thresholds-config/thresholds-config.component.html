@@ -23,7 +23,7 @@
               <tbody>
                 <tr *ngFor="let threshold of thresholds" (keyup.enter)="updateThreshold(threshold)"
                     (keyup.esc)="cancelEdition(threshold)">
-                  <td>{{ getHumanRedableName(threshold.variableName) }}</td>
+                  <td>{{ variable.getHumanRedableName(threshold.variableName) }}</td>
                   <td>{{ threshold.lastModification }}</td>
                   <td>
                     <span [hidden]="threshold['editMode']">{{ threshold.minValue }}</span>

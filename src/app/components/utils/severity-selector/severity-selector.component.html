@@ -1,3 +1,3 @@
-<select class="form-control" [(ngModel)]="value" (change)="onChange.emit(value)">
-  <option *ngFor="let severity of severities">{{ severity.priority }}</option>
+<select class="form-control float-right" [(ngModel)]="value" (change)="changed.emit(value)">
+  <option [ngValue]="severity" *ngFor="let severity of severities">{{ severity.priority }}</option>
 </select>

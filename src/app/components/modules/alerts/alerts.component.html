@@ -1,175 +1,110 @@
 <div class="content-wrapper">
   <div class="content">
-    <div class="breadcrumb-wrapper">
-      <h1>Table</h1>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb p-0">
-          <li class="breadcrumb-item">
-            <a href="index.html">
-              <span class="mdi mdi-home"></span>
-            </a>
-          </li>
-          <li class="breadcrumb-item">
-            components
-          </li>
-          <li class="breadcrumb-item" aria-current="page">table</li>
-        </ol>
-      </nav>
-    </div>
-
     <div class="row">
-      <div class="col-12">
-        <!-- Recent Order Table -->
-        <div class="card card-table-border-none" id="recent-orders">
-          <div class="card-header justify-content-between">
-            <h2>Recent Orders</h2>
-            <div class="date-range-report ">
-              <span></span>
+      <div class="col-lg-12">
+        <div class="card card-default">
+          <div class="card-header card-header-border-bottom">
+            <h2>Configuración de Nodos</h2>
+            <app-node-selector class="col-2 float-right" (changed)="onNodeChange($event)"></app-node-selector>
+            <app-severity-selector class="col-2 float-right" (changed)="onSeverityChange($event)"></app-severity-selector>
+            <div class="col-2 float-right">
+              <!--<div class="input-group-prepend">-->
+                <!--<span class="input-group-text">-->
+                  <!--<i class="mdi mdi-calendar-range"></i>-->
+                <!--</span>-->
+              <!--</div>-->
+              <input [(ngModel)]="dateFrom" [value]="dateFrom" (blur)="getNotifications()" type="text" class="form-control" data-mask="00/00/0000" maxlength="10">
+            </div>
+            <div class="col-2 float-right">
+              <!--<div class="input-group-prepend">-->
+              <!--<span class="input-group-text">-->
+              <!--<i class="mdi mdi-calendar-range"></i>-->
+              <!--</span>-->
+              <!--</div>-->
+              <input [(ngModel)]="dateTo" [value]="dateTo" (blur)="getNotifications()" type="text" class="form-control" data-mask="00/00/0000" maxlength="10">
             </div>
           </div>
-          <div class="card-body pt-0 pb-5">
-            <table class="table card-table table-responsive table-responsive-large" style="width:100%">
+          <div class="card-body">
+            <table class="table">
               <thead>
-              <tr>
-                <th>Order ID</th>
-                <th>Product Name</th>
-                <th class="d-none d-md-table-cell">Units</th>
-                <th class="d-none d-md-table-cell">Order Date</th>
-                <th class="d-none d-md-table-cell">Order Cost</th>
-                <th>Status</th>
-                <th></th>
-              </tr>
+                <tr>
+                  <th scope="col">Variable Afectada</th>
+                  <th scope="col">Nodo</th>
+                  <th scope="col">Criticidad</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Hora</th>
+                  <th scope="col"></th>
+                </tr>
               </thead>
               <tbody>
-              <tr>
-                <td >24541</td>
-                <td >
-                  <a class="text-dark" href=""> Coach Swagger</a>
-                </td>
-                <td class="d-none d-md-table-cell">1 Unit</td>
-                <td class="d-none d-md-table-cell">Oct 20, 2018</td>
-                <td class="d-none d-md-table-cell">$230</td>
-                <td >
-                  <span class="badge badge-success">Completed</span>
-                </td>
-                <td class="text-right">
-                  <div class="dropdown show d-inline-block widget-dropdown">
-                    <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
-                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
-                      <li class="dropdown-item">
-                        <a href="#">View</a>
-                      </li>
-                      <li class="dropdown-item">
-                        <a href="#">Remove</a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td >24541</td>
-                <td >
-                  <a class="text-dark" href=""> Toddler Shoes, Gucci Watch</a>
-                </td>
-                <td class="d-none d-md-table-cell">2 Units</td>
-                <td class="d-none d-md-table-cell">Nov 15, 2018</td>
-                <td class="d-none d-md-table-cell">$550</td>
-                <td >
-                  <span class="badge badge-warning">Delayed</span>
-                </td>
-                <td class="text-right">
-                  <div class="dropdown show d-inline-block widget-dropdown">
-                    <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
-                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order2">
-                      <li class="dropdown-item">
-                        <a href="#">View</a>
-                      </li>
-                      <li class="dropdown-item">
-                        <a href="#">Remove</a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td >24541</td>
-                <td >
-                  <a class="text-dark" href=""> Hat Black Suits</a>
-                </td>
-                <td class="d-none d-md-table-cell">1 Unit</td>
-                <td class="d-none d-md-table-cell">Nov 18, 2018</td>
-                <td class="d-none d-md-table-cell">$325</td>
-                <td >
-                  <span class="badge badge-warning">On Hold</span>
-                </td>
-                <td class="text-right">
-                  <div class="dropdown show d-inline-block widget-dropdown">
-                    <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order3" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false" data-display="static"></a>
-                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order3">
-                      <li class="dropdown-item">
-                        <a href="#">View</a>
-                      </li>
-                      <li class="dropdown-item">
-                        <a href="#">Remove</a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td >24541</td>
-                <td >
-                  <a class="text-dark" href=""> Backpack Gents, Swimming Cap Slin</a>
-                </td>
-                <td class="d-none d-md-table-cell">5 Units</td>
-                <td class="d-none d-md-table-cell">Dec 13, 2018</td>
-                <td class="d-none d-md-table-cell">$200</td>
-                <td >
-                  <span class="badge badge-success">Completed</span>
-                </td>
-                <td class="text-right">
-                  <div class="dropdown show d-inline-block widget-dropdown">
-                    <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
-                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order4">
-                      <li class="dropdown-item">
-                        <a href="#">View</a>
-                      </li>
-                      <li class="dropdown-item">
-                        <a href="#">Remove</a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td >24541</td>
-                <td >
-                  <a class="text-dark" href=""> Speed 500 Ignite</a>
-                </td>
-                <td class="d-none d-md-table-cell">1 Unit</td>
-                <td class="d-none d-md-table-cell">Dec 23, 2018</td>
-                <td class="d-none d-md-table-cell">$150</td>
-                <td >
-                  <span class="badge badge-danger">Cancelled</span>
-                </td>
-                <td class="text-right">
-                  <div class="dropdown show d-inline-block widget-dropdown">
-                    <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order5" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false" data-display="static"></a>
-                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order5">
-                      <li class="dropdown-item">
-                        <a href="#">View</a>
-                      </li>
-                      <li class="dropdown-item">
-                        <a href="#">Remove</a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
+                <tr *ngFor="let notification of notifications">
+                  <td>{{ variable.getHumanRedableName(notification.affectedVariable) }}</td>
+                  <td>{{ notification.node.module + notification.node.number }}</td>
+                  <td>{{ notification.severity.priority }}</td>
+                  <td>{{ notification.date }}</td>
+                  <td>{{ notification.hour }}</td>
+                  <td class="text-right">
+                    <div class="dropdown show d-inline-block widget-dropdown">
+                      <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order5"
+                         data-toggle="dropdown" aria-haspopup="true"
+                         aria-expanded="false" data-display="static"></a>
+                      <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order5">
+                        <li class="dropdown-item">
+                          <a (click)="getNotificationAlerts(notification)" data-toggle="modal"
+                             data-target="#exampleModalGrid" href="javascript:void(0)">Ver Detalle
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
               </tbody>
             </table>
+          </div>
+          <!-- Grid Modal -->
+          <div class="modal fade" id="exampleModalGrid" tabindex="-1" role="dialog" aria-labelledby="exampleModalGrid" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalGridTitle">Detalles de la alerta</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="modal-body">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Variable Afectada</th>
+                          <th scope="col">Valor</th>
+                          <th scope="col">Umbral Min</th>
+                          <th scope="col">Umbral Max</th>
+                          <th scope="col">Nodo</th>
+                          <th scope="col">Criticidad</th>
+                          <th scope="col">Fecha</th>
+                          <th scope="col">Hora</th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let alert of notificationAlerts">
+                          <td>{{ variable.getHumanRedableName(alert.affectedVariable) }}</td>
+                          <td>{{ alert.value }}</td>
+                          <td>{{ alert.thresholdExceeded.minValue }}</td>
+                          <td>{{ alert.thresholdExceeded.maxValue }}</td>
+                          <td>{{ alert.node.module + alert.node.number }}</td>
+                          <td>{{ alert.severity.priority }}</td>
+                          <td>{{ alert.date }}</td>
+                          <td>{{ alert.hour }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="modal-footer"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

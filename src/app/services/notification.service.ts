@@ -26,7 +26,10 @@ export class NotificationService extends AbstractHttpService {
     if (severity) {
       params = params.set('criticidad', String(severity.priority));
     }
-    return this.http.get(this.baseUrl + '/alertasPorFecha', { params: params });
+    return this.http.get(this.baseUrl + '/alertasPorFecha', { params: params }).pipe(
+      map(res => _.map(res, function(item) {
+        return new Notification(item);
+      })));
   }
 
   getNotificationsByPeriod(from, to, severity?: Severity) {
@@ -37,6 +40,13 @@ export class NotificationService extends AbstractHttpService {
       params = params.set('prioridadCriticidad', String(severity.priority));
     }
     return this.http.get(this.baseUrl + '/alertas', { params: params }).pipe(
+      map(res => _.map(res, function(item) {
+        return new Notification(item);
+      })));
+  }
+
+  getNotificationAlerts(notification: Notification) {
+    return this.http.get(this.baseUrl + '/detalleAlerta/' + notification.id).pipe(
       map(res => _.map(res, function(item) {
         return new Notification(item);
       })));

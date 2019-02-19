@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import {Notification} from '../models/notification';
+import {VariableService} from './variable.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToastrService {
 
-  constructor(private toastr: ToastrManager) { }
+  constructor(private toastr: ToastrManager, private variable: VariableService) { }
 
   showMessage(notification: Notification) {
     switch (notification.severity.priority) {
@@ -27,8 +28,7 @@ export class ToastrService {
   }
 
   private getMessage(notification: Notification): string {
-    return notification.description + ' ' + notification.affectedVariable + ' Affected Node: ' +
-      notification.node.module + ' ' + notification.node.number + ' Severity: ' + notification.severity.priority +
-      ' Hour: ' + notification.hour;
+    return 'Variable afectada: ' + this.variable.getHumanRedableName(notification.affectedVariable) + ' Nodo: ' +
+      notification.node.module + ' ' + notification.node.number + ' Criticidad: ' + notification.severity.priority;
   }
 }

@@ -3,6 +3,7 @@ import {ThresholdService} from '../../../../services/threshold.service';
 import {Threshold} from '../../../../models/threshold';
 import {Severity} from '../../../../models/severity';
 import {SeverityService} from '../../../../services/severity.service';
+import {VariableService} from '../../../../services/variable.service';
 
 @Component({
   selector: 'app-thresholds-config',
@@ -14,7 +15,8 @@ export class ThresholdsConfigComponent implements OnInit {
   thresholds: Threshold[];
   severities: Severity[];
 
-  constructor(private thresholdService: ThresholdService, private severityService: SeverityService) { }
+  constructor(private thresholdService: ThresholdService, private severityService: SeverityService,
+              public variable: VariableService) { }
 
   ngOnInit() {
     this.thresholdService.getThresholds().subscribe(thresholds => {
@@ -53,10 +55,5 @@ export class ThresholdsConfigComponent implements OnInit {
     const tzOffset = (new Date()).getTimezoneOffset() * 60000,
       localISOTime = (new Date(Date.now() - tzOffset)).toISOString().slice(0, -1);
     return localISOTime.split('T')[0];
-  }
-
-  getHumanRedableName(name: string) {
-    name = name.replace('_', ' ');
-    return name.charAt(0).toUpperCase() + name.slice(1);
   }
 }
