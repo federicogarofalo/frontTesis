@@ -1,4 +1,5 @@
 import {Severity} from './severity';
+import {Node} from './node';
 
 export class Threshold {
   id: number;
@@ -10,6 +11,7 @@ export class Threshold {
   isActive: boolean;
   severity: Severity;
   unitOfMeasurement: string;
+  node: Node;
 
   constructor(params: any) {
     this.id = params.id;
@@ -21,5 +23,6 @@ export class Threshold {
     this.isActive = params.activo;
     this.severity = new Severity(params.criticidad);
     this.unitOfMeasurement = params.unidadMedida;
+    this.node =  params.nodo ? new Node(params.nodo) : params.nodo;
   }
 }

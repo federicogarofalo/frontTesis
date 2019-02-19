@@ -33,6 +33,7 @@ import { AuthService } from './services/auth.service';
 import { NotificationService } from './services/notification.service';
 import { SeverityService } from './services/severity.service';
 import { ThresholdService } from './services/threshold.service';
+import { NodeComponent } from './components/modules/node/node.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ThresholdService } from './services/threshold.service';
     ThresholdsConfigComponent,
     AlertsComponent,
     SeveritySelectorComponent,
-    NodeSelectorComponent
+    NodeSelectorComponent,
+    NodeComponent
   ],
   imports: [
     BrowserModule,

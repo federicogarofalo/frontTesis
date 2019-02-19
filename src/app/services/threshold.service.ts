@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Threshold} from '../models/threshold';
 import * as _ from 'lodash';
+import {Node} from '../models/node';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,9 @@ export class ThresholdService extends AbstractHttpService {
     super();
   }
 
-  getThresholds(): Observable<Threshold[]> {
-    return this.http.get<Threshold[]>(this.baseUrl + '/umbrales').pipe(
+  getThresholds(node?: Node): Observable<Threshold[]> {
+    const nodeData = node ? '/' + node.id : '';
+    return this.http.get<Threshold[]>(this.baseUrl + '/umbrales' + nodeData).pipe(
       map(res => _.map(res, function(item) {
         return new Threshold(item);
       })));

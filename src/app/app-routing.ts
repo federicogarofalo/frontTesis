@@ -8,6 +8,7 @@ import {AlertsComponent} from './components/modules/alerts/alerts.component';
 import {ThresholdsConfigComponent} from './components/modules/configuration/thresholds-config/thresholds-config.component';
 import {NodesConfigComponent} from './components/modules/configuration/nodes-config/nodes-config.component';
 import {AlertsConfigComponent} from './components/modules/configuration/alerts-config/alerts-config.component';
+import {NodeComponent} from './components/modules/node/node.component';
 
 const appRoutes: Routes = [
   {
@@ -21,6 +22,9 @@ const appRoutes: Routes = [
       }, {
         path: 'alertas',
         component: AlertsComponent
+      }, {
+        path: 'nodos',
+        component: NodeComponent
       }, {
         path: 'configuracion/umbrales',
         component: ThresholdsConfigComponent
