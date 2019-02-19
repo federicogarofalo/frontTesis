@@ -9,10 +9,10 @@ import {VariableService} from '../../../services/variable.service';
 
 @Component({
   selector: 'app-alerts',
-  templateUrl: './alerts.component.html',
-  styleUrls: ['./alerts.component.css']
+  templateUrl: './alert.component.html',
+  styleUrls: ['./alert.component.css']
 })
-export class AlertsComponent implements OnInit, AfterViewInit {
+export class AlertComponent implements OnInit, AfterViewInit {
 
   notifications: Notification[];
   notificationAlerts: Notification[];

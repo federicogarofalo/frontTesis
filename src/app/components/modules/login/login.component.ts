@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
+import {User} from '../../../models/user';
 
 @Component({
   selector: 'app-login',
@@ -38,6 +39,7 @@ export class LoginComponent implements OnInit {
       success => {
         localStorage.setItem('token', success['token']);
         localStorage.setItem('role', success['user']['authorities'][0]['authority']);
+        localStorage.setItem('user', JSON.stringify(new User(success['user'])));
         this.router.navigate(['home']);
       },
       err => {

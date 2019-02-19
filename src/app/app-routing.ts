@@ -4,11 +4,12 @@ import {BaseLayoutComponent} from './components/layout/base-layout/base-layout.c
 import {LoginLayoutComponent} from './components/layout/login-layout/login-layout.component';
 import {HomeComponent} from './components/modules/home/home.component';
 import {LoginComponent} from './components/modules/login/login.component';
-import {AlertsComponent} from './components/modules/alerts/alerts.component';
+import {AlertComponent} from './components/modules/alert/alert.component';
 import {ThresholdsConfigComponent} from './components/modules/configuration/thresholds-config/thresholds-config.component';
 import {NodesConfigComponent} from './components/modules/configuration/nodes-config/nodes-config.component';
 import {AlertsConfigComponent} from './components/modules/configuration/alerts-config/alerts-config.component';
 import {NodeComponent} from './components/modules/node/node.component';
+import {UserComponent} from './components/modules/user/user.component';
 
 const appRoutes: Routes = [
   {
@@ -21,10 +22,13 @@ const appRoutes: Routes = [
         component: HomeComponent
       }, {
         path: 'alertas',
-        component: AlertsComponent
+        component: AlertComponent
       }, {
         path: 'nodos',
         component: NodeComponent
+      }, {
+        path: 'usuarios',
+        component: UserComponent
       }, {
         path: 'configuracion/umbrales',
         component: ThresholdsConfigComponent

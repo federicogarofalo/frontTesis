@@ -46,7 +46,7 @@ export class ThresholdsConfigComponent implements OnInit {
     });
   }
 
-  cancelEdition(threshold) {
+  cancelEdition(threshold: Threshold) {
     Object.assign(threshold, threshold['originalValue']);
     threshold['editMode'] = false;
   }

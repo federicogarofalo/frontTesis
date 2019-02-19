@@ -1,0 +1,70 @@
+<div class="content-wrapper">
+  <div class="content">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card card-default">
+          <div class="card-header card-header-border-bottom">
+            <h2>Alertas</h2>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">Usuario</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Email</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Rol</th>
+                <th scope="col"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let user of users">
+                <td>{{ user.userName }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                  <span [hidden]="user['editMode']">{{ user.accountState.description }}</span>
+                  <select [hidden]="!user['editMode']" class="form-control" [(ngModel)]="user.accountState">
+                    <option *ngFor="let state of accountStates"
+                            [ngValue]="state">{{ state.description }}
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <span [hidden]="user['editMode']">{{ user.role.type }}</span>
+                  <select [hidden]="!user['editMode']" class="form-control" [(ngModel)]="user.role">
+                    <option *ngFor="let role of roles"
+                            [ngValue]="role">{{ role.type }}
+                    </option>
+                  </select>
+                </td>
+                <td class="text-right">
+                  <div class="dropdown show d-inline-block widget-dropdown">
+                    <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order5"
+                       data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false" data-display="static"></a>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order5">
+                      <li class="dropdown-item" *ngIf="!user['editMode']">
+                        <a (click)="editUser(user)" href="javascript:void(0)">Editar</a>
+                      </li>
+                      <li class="dropdown-item" *ngIf="user['editMode']">
+                        <a (click)="updateUser(user)" href="javascript:void(0)">Guardar</a>
+                      </li>
+                      <li class="dropdown-item" *ngIf="user['editMode']">
+                        <a (click)="cancelEdition(user)" href="javascript:void(0)">Cancelar</a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

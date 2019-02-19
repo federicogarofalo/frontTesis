@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
+import {User} from '../../../models/user';
 
 @Component({
   selector: 'app-topbar',
@@ -8,15 +9,12 @@ import {AuthService} from '../../../services/auth.service';
 })
 export class TopbarComponent implements OnInit {
 
-  userMenu = false;
+  user: User;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-  }
-
-  toggleUserMenu() {
-    this.userMenu = !this.userMenu;
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
   logout() {

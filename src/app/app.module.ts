@@ -24,7 +24,7 @@ import { FrameService } from './services/frame.service';
 import { NodesConfigComponent } from './components/modules/configuration/nodes-config/nodes-config.component';
 import { AlertsConfigComponent } from './components/modules/configuration/alerts-config/alerts-config.component';
 import { ThresholdsConfigComponent } from './components/modules/configuration/thresholds-config/thresholds-config.component';
-import { AlertsComponent } from './components/modules/alerts/alerts.component';
+import { AlertComponent } from './components/modules/alert/alert.component';
 import { AuthTokenInterceptor } from './auth-token-interceptor';
 import { SeveritySelectorComponent } from './components/utils/severity-selector/severity-selector.component';
 import { NodeSelectorComponent } from './components/utils/node-selector/node-selector.component';
@@ -34,6 +34,7 @@ import { NotificationService } from './services/notification.service';
 import { SeverityService } from './services/severity.service';
 import { ThresholdService } from './services/threshold.service';
 import { NodeComponent } from './components/modules/node/node.component';
+import { UserComponent } from './components/modules/user/user.component';
 
 @NgModule({
   declarations: [
@@ -48,10 +49,11 @@ import { NodeComponent } from './components/modules/node/node.component';
     NodesConfigComponent,
     AlertsConfigComponent,
     ThresholdsConfigComponent,
-    AlertsComponent,
+    AlertComponent,
     SeveritySelectorComponent,
     NodeSelectorComponent,
-    NodeComponent
+    NodeComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
