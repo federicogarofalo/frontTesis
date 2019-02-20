@@ -6,6 +6,10 @@ import {SeverityService} from '../../../services/severity.service';
 import {VariableService} from '../../../services/variable.service';
 import {Node} from '../../../models/node';
 import {NodeSelectorComponent} from '../../utils/node-selector/node-selector.component';
+import {FrameService} from '../../../services/frame.service';
+import {interval} from 'rxjs';
+import {startWith, switchMap} from 'rxjs/operators';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-node',
@@ -18,19 +22,52 @@ export class NodeComponent implements OnInit, AfterViewInit {
   thresholds: Threshold[];
   severities: Severity[];
 
+  chartOptions: any = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: false,
+          suggestedMin: 5,
+          callback: function (value) {
+            return value + ' Vol';
+          }
+        }
+      }]
+    }
+  };
+
+  barChartOptions = this.chartOptions;
+  barChartLabels: string[] = ['Ultima Medición'];
+  barChartType = 'bar';
+  barChartLegend = true;
+  barChartData: any[];
+
+  lineChartOptions = this.chartOptions
+  lineChartLabels: string[] = ['10', '9', '8', '7', '6', '5', '4', '3', '2', '1'];
+  lineChartType = 'line';
+  lineChartLegend = true;
+  lineChartData: any[];
+
   @ViewChild(NodeSelectorComponent) nodeSelector;
 
   constructor(private thresholdService: ThresholdService, private severityService: SeverityService,
-              public variable: VariableService) { }
+              public variable: VariableService, private frameService: FrameService) { }
 
   ngOnInit() {
-
+    this.severityService.getSeverities().subscribe( severities => {
+      this.severities = severities;
+    }, err => {
+      console.log(err);
+    });
   }
 
   ngAfterViewInit(): void {
     const nodesSubscription = this.nodeSelector.dataReady.subscribe(nodes => {
       this.node = nodes[0];
       this.getThresholds();
+      this.getFramesData();
       nodesSubscription.unsubscribe();
     });
   }
@@ -41,11 +78,30 @@ export class NodeComponent implements OnInit, AfterViewInit {
     }, err => {
       console.log(err);
     });
-    this.severityService.getSeverities().subscribe( severities => {
-      this.severities = severities;
-    }, err => {
-      console.log(err);
-    });
+  }
+
+  getFramesData() {
+    interval(30000).pipe(startWith(0), switchMap(() => this.frameService.getLastFramesByNode(this.node)))
+      .subscribe(resp => {
+        debugger;
+        this.barChartData = [
+          {data: [resp[0].continuousVoltage], label: 'Tensión Continua'},
+          {data: [resp[0].networkVoltage], label: 'Tensión Red'}
+        ];
+        const continuousVoltage = [];
+        const networkVoltage = [];
+        _.forEach(resp, function (frame) {
+          continuousVoltage.push(frame.continuousVoltage);
+          networkVoltage.push(frame.networkVoltage);
+        });
+        this.lineChartData = [
+          {data: continuousVoltage, label: 'Tensión Continua', fill: false},
+          {data: networkVoltage, label: 'Tensión Red', fill: false}
+        ];
+        console.log('Request worked');
+      }, err => {
+        console.log('Request did not work');
+      });
   }
 
   editNode(threshold: Threshold) {
@@ -77,5 +133,6 @@ export class NodeComponent implements OnInit, AfterViewInit {
   onNodeChange(node: Node) {
     this.node = node;
     this.getThresholds();
+    this.getFramesData();
   }
 }

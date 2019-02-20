@@ -21,7 +21,42 @@
             </ul>
             <div class="tab-content" id="myTabContent2">
               <div class="tab-pane pt-3 fade show active" id="icon-home" role="tabpanel" aria-labelledby="icon-home-tab">
-                monitoreo
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="card card-default">
+                      <div class="card-header card-header-border-bottom">
+                        <h2>Última Medición</h2>
+                      </div>
+                      <div class="card-body">
+                        <div style="display: block" *ngIf="barChartData">
+                          <canvas baseChart
+                                  [(datasets)]="barChartData"
+                                  [labels]="barChartLabels"
+                                  [options]="barChartOptions"
+                                  [legend]="barChartLegend"
+                                  [chartType]="barChartType"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="card card-default">
+                      <div class="card-header card-header-border-bottom">
+                        <h2>Últimas 10 Mediciones</h2>
+                      </div>
+                      <div class="card-body">
+                        <div style="display: block" *ngIf="lineChartData">
+                          <canvas baseChart
+                                  [(datasets)]="lineChartData"
+                                  [labels]="lineChartLabels"
+                                  [options]="lineChartOptions"
+                                  [legend]="lineChartLegend"
+                                  [chartType]="lineChartType"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="tab-pane pt-3 fade" id="icon-profile" role="tabpanel" aria-labelledby="icon-profile-tab">
                 <table class="table">

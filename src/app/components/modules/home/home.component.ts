@@ -18,19 +18,22 @@ export class HomeComponent implements OnInit {
     networkPower: 0
   };
 
-  barChartOptions: any = {
+  chartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true,
     scales: {
       yAxes: [{
         ticks: {
+          beginAtZero: true,
           callback: function (value) {
-            return value + ' Watts';
+            return value + ' Vol';
           }
         }
       }]
     }
   };
+
+  barChartOptions = this.chartOptions;
   barChartLabels: string[] = ['Ultima Medición'];
   barChartType = 'bar';
   barChartLegend = true;
@@ -41,19 +44,7 @@ export class HomeComponent implements OnInit {
   internalPower;
   networkPower;
 
-  lineChartOptions: any = {
-    scaleShowVerticalLines: false,
-    responsive: true,
-    scales: {
-      yAxes: [{
-        ticks: {
-          callback: function (value) {
-            return value + ' Watts';
-          }
-        }
-      }]
-    }
-  };
+  lineChartOptions = this.chartOptions;
   lineChartLabels: string[] = ['10', '9', '8', '7', '6', '5', '4', '3', '2', '1'];
   lineChartType = 'line';
   lineChartLegend = true;
