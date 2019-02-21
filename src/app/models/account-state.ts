@@ -4,6 +4,6 @@ export class AccountState {
 
   constructor(params) {
     this.id = params.id;
-    this.description = params.descripcion;
+    this.description = params.description;
   }
 }

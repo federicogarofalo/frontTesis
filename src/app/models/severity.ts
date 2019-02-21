@@ -6,8 +6,8 @@ export class Severity {
 
   constructor(params: any) {
     this.id = params.id;
-    this.priority = params.prioridad;
-    this.reps = params.cantidadRepeticiones;
-    this.period = params.periodoTiempo;
+    this.priority = params.priority;
+    this.reps = params.reps;
+    this.period = params.period;
   }
 }

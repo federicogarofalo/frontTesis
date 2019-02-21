@@ -5,7 +5,7 @@ export class FilteredFrame {
   data: VariableData[];
 
   constructor(params) {
-    this.variableName = params.variable;
-    this.data = params.valores;
+    this.variableName = params.variableName;
+    this.data = params.data;
   }
 }

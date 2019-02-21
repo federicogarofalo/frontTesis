@@ -74,7 +74,7 @@ export class ReportComponent implements OnInit, AfterViewInit {
       String(this.defaultDateFrom), String(this.defaultDateTo), this.node, 2)
       .subscribe(resp => {
         this.powerChartLabels = [];
-        this.voltageChartLabels = [];
+        this.voltageChartLabels = ['2019-02-21', '2019-02-20'];
         const continuousVoltage = [];
         const networkVoltage = [];
         const continuousPower = [];
@@ -97,16 +97,16 @@ export class ReportComponent implements OnInit, AfterViewInit {
         this.powerChartLabels.reverse();
         this.voltageChartLabels.reverse();
         this.powerChartData = [
-          {data: continuousPower, label: 'Potencia Continua'},
-          {data: networkPower, label: 'Potencia Red'},
-          // {data: [1000, 980, 995, 970, 999, 975, 986], label: 'Potencia Continua'},
-          // {data: [840, 830, 835, 832, 829, 839, 840], label: 'Potencia Red'}
+          // {data: continuousPower, label: 'Potencia Continua'},
+          // {data: networkPower, label: 'Potencia Red'},
+          {data: [1000, 980, 995, 970, 999, 975, 986], label: 'Potencia Continua'},
+          {data: [840, 830, 835, 832, 829, 839, 840], label: 'Potencia Red'}
         ];
         this.voltageChartData = [
-          {data: continuousVoltage, label: 'Tensión Continua'},
-          {data: networkVoltage, label: 'Tensión Red'},
-          // {data: [86, 90, 88, 84, 91, 92, 87], label: 'Tensión Continua', fill: false},
-          // {data: [220, 219, 221, 220, 220, 220, 218], label: 'Tensión Red', fill: false}
+          // {data: continuousVoltage, label: 'Tensión Continua'},
+          // {data: networkVoltage, label: 'Tensión Red'},
+          {data: [86, 90, 88, 84, 91, 92, 87], label: 'Tensión Continua', fill: false},
+          {data: [220, 219, 221, 220, 220, 220, 218], label: 'Tensión Red', fill: false}
         ];
         console.log('Request worked');
       }, err => {
@@ -117,5 +117,9 @@ export class ReportComponent implements OnInit, AfterViewInit {
   onNodeChange(node: Node) {
     this.node = node;
     this.getFramesData();
+  }
+
+  changeData(tableData) {
+    debugger;
   }
 }

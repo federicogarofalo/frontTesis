@@ -7,9 +7,9 @@ export class Node {
 
   constructor(params: any) {
     this.id = params.id;
-    this.module = params.modulo;
-    this.number = params.numero;
-    this.isActive = params.activo;
-    this.description = params.descripcion;
+    this.module = params.module;
+    this.number = params.number;
+    this.isActive = params.isActive;
+    this.description = params.description;
   }
 }

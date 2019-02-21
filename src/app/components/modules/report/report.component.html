@@ -15,7 +15,7 @@
                 </div>
                 <div class="card-body">
                   <div style="display: block" *ngIf="voltageChartData">
-                    <canvas baseChart
+                    <canvas baseChart (chartClick)="changeData($event)"
                             [(datasets)]="voltageChartData"
                             [labels]="voltageChartLabels"
                             [options]="voltageChartOptions"

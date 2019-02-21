@@ -1,4 +1,4 @@
-import {Time} from '@angular/common';
+import {Node} from './node';
 
 export class Frame {
   id: number;
@@ -14,11 +14,15 @@ export class Frame {
   internalCurrent: number;
   continuousVoltage: number;
   continuousCurrent: number;
-  temperature: number;
+  temperature1: number;
+  temperature2: number;
+  temperature3: number;
+  temperature4: number;
+  temperature5: number;
   humidity: number;
-  pvm: number;
-  date: Date;
-  hour: Time;
+  pwm: number;
+  date: string;
+  hour: string;
   continuousPower: number|number[];
   internalPower: number|number[];
   networkPower: number|number[];
@@ -26,26 +30,30 @@ export class Frame {
 
   constructor(params: any) {
     this.id = params.id;
-    this.node = params.nodo;
-    this.state = params.estado;
-    this.networkVoltage = params.tensionRed;
-    this.networkCurrent = params.corrienteRed;
-    this.voltageFrequency = params.frecuenciaTension;
-    this.currentFrequency = params.frecuenciaCorriente;
-    this.phaseShift = params.desfasaje;
-    this.groundVoltage = params.tensionRed;
-    this.internalVoltage = params.tensionInterna;
-    this.internalCurrent = params.corrienteInterna;
-    this.continuousVoltage = params.tensionContinua;
-    this.continuousCurrent = params.corrienteContinua;
-    this.temperature = params.temperatura1;
-    this.humidity = params.humedad;
-    this.pvm = params.pvm;
-    this.date = params.fecha;
-    this.hour = params.hora;
-    this.continuousPower = params.potenciaContinua;
-    this.internalPower = params.potenciaInterna;
-    this.networkPower = params.potenciaRed;
-    this.controlState = params.estadoControl;
+    this.node = params.node ? new Node(params.node) : params.node;
+    this.state = params.state;
+    this.networkVoltage = params.networkVoltage;
+    this.networkCurrent = params.networkCurrent;
+    this.voltageFrequency = params.voltageFrequency;
+    this.currentFrequency = params.currentFrequency;
+    this.phaseShift = params.phaseShift;
+    this.groundVoltage = params.groundVoltage;
+    this.internalVoltage = params.internalVoltage;
+    this.internalCurrent = params.internalCurrent;
+    this.continuousVoltage = params.continuousVoltage;
+    this.continuousCurrent = params.continuousCurrent;
+    this.temperature1 = params.temperature1;
+    this.temperature2 = params.temperature2;
+    this.temperature3 = params.temperature3;
+    this.temperature4 = params.temperature4;
+    this.temperature5 = params.temperature5;
+    this.humidity = params.humidity;
+    this.pwm = params.pwm;
+    this.date = params.date;
+    this.hour = params.hour;
+    this.continuousPower = params.continuousPower;
+    this.internalPower = params.internalPower;
+    this.networkPower = params.networkPower;
+    this.controlState = params.controlState;
   }
 }

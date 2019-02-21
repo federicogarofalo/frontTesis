@@ -4,8 +4,8 @@ export class VariableData {
   hour: string;
 
   constructor(params) {
-    this.value = params.valor;
-    this.date = params.fecha;
-    this.hour = params.hora;
+    this.value = params.value;
+    this.date = params.date;
+    this.hour = params.hour;
   }
 }

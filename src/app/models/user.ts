@@ -17,6 +17,6 @@ export class User {
     this.lastName = params.lastName;
     this.email = params.email;
     this.role = params.authorities ? new Role(params.authorities[0]) : new Role(params.userProfile);
-    this.accountState = params.estado ? new AccountState(params.estado) : params.estado;
+    this.accountState = params.accountState ? new AccountState(params.estado) : params.accountState;
   }
 }

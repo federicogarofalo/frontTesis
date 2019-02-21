@@ -17,14 +17,14 @@ export class Notification {
 
   constructor(params: any) {
     this.id = params.id;
-    this.description = params.descripcion;
-    this.affectedVariable = params.variableAfectada;
-    this.value = params.valor;
-    this.thresholdExceeded = params.umbralSuperado ? new Threshold(params.umbralSuperado) : params.umbralSuperado;
-    this.node = new Node(params.nodo);
-    this.severity = params.criticidad ? new Severity(params.criticidad) : params.criticidad;
-    this.visualize = params.visualizar;
-    this.date = params.fecha;
-    this.hour = params.hora;
+    this.description = params.description;
+    this.affectedVariable = params.affectedVariable;
+    this.value = params.value;
+    this.thresholdExceeded = params.thresholdExceeded ? new Threshold(params.thresholdExceeded) : params.thresholdExceeded;
+    this.node = new Node(params.node);
+    this.severity = params.severity ? new Severity(params.severity) : params.severity;
+    this.visualize = params.visualize;
+    this.date = params.date;
+    this.hour = params.hour;
   }
 }

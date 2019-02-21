@@ -11,18 +11,21 @@ export class ToastrService {
   constructor(private toastr: ToastrManager, private variable: VariableService) { }
 
   showMessage(notification: Notification) {
+    const toastrOptions = {
+      dismiss: 'click'
+    };
     switch (notification.severity.priority) {
       case 'Critica':
-        this.toastr.errorToastr(this.getMessage(notification), 'Error: variable fuera de umbral');
+        this.toastr.errorToastr(this.getMessage(notification), 'Error: variable fuera de umbral', toastrOptions);
         break;
       case 'Alta':
-        this.toastr.warningToastr(this.getMessage(notification), 'Error: variable fuera de umbral');
+        this.toastr.warningToastr(this.getMessage(notification), 'Error: variable fuera de umbral', toastrOptions);
         break;
       case 'Media':
-        this.toastr.warningToastr(this.getMessage(notification), 'Error: variable fuera de umbral');
+        this.toastr.warningToastr(this.getMessage(notification), 'Error: variable fuera de umbral', toastrOptions);
         break;
       case 'Baja':
-        this.toastr.infoToastr(this.getMessage(notification), 'Error: variable fuera de umbral');
+        this.toastr.infoToastr(this.getMessage(notification), 'Error: variable fuera de umbral', toastrOptions);
         break;
     }
   }
