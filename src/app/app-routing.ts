@@ -10,6 +10,7 @@ import {NodesConfigComponent} from './components/modules/configuration/nodes-con
 import {AlertsConfigComponent} from './components/modules/configuration/alerts-config/alerts-config.component';
 import {NodeComponent} from './components/modules/node/node.component';
 import {UserComponent} from './components/modules/user/user.component';
+import {ReportComponent} from './components/modules/report/report.component';
 
 const appRoutes: Routes = [
   {
@@ -26,6 +27,9 @@ const appRoutes: Routes = [
       }, {
         path: 'nodos',
         component: NodeComponent
+      }, {
+        path: 'historicos',
+        component: ReportComponent
       }, {
         path: 'usuarios',
         component: UserComponent

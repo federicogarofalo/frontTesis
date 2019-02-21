@@ -49,6 +49,25 @@ export class FrameService extends AbstractHttpService {
       })));
   }
 
+  getProcessedFilteredData(variableName: string, dateFrom: string, dateTo: string, node: Node, type, hourFrom?: string, hourTo?: string) {
+    let params = new HttpParams();
+    params = params.set('nombreVariable', String(variableName));
+    params = params.set('fechaDesde', String(dateFrom));
+    params = params.set('fechaHasta', String(dateTo));
+    params = params.set('idNodo', String(node.id));
+    params = params.set('idTipoProcesamiento', String(type));
+    if (hourFrom) {
+      params = params.set('horaDesde', String(hourFrom));
+    }
+    if (hourTo) {
+      params = params.set('horaHasta', String(hourTo));
+    }
+    return this.http.get(this.baseUrl + '/getTramaProcesadaFiltrada', { params: params }).pipe(
+      map(res => _.map(res, function(item) {
+        return new FilteredFrame(item);
+      })));
+  }
+
   getLastFramesByNode(node: Node) {
     return this.http.get(this.baseUrl + '/ultimasNTramasPorNodos/' + node.id).pipe(
       map(res => _.map(res, function(item) {

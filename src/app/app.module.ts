@@ -35,6 +35,7 @@ import { SeverityService } from './services/severity.service';
 import { ThresholdService } from './services/threshold.service';
 import { NodeComponent } from './components/modules/node/node.component';
 import { UserComponent } from './components/modules/user/user.component';
+import { ReportComponent } from './components/modules/report/report.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { UserComponent } from './components/modules/user/user.component';
     SeveritySelectorComponent,
     NodeSelectorComponent,
     NodeComponent,
-    UserComponent
+    UserComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,

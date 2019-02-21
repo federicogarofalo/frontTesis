@@ -44,8 +44,8 @@ export class NodeComponent implements OnInit, AfterViewInit {
   barChartLegend = true;
   barChartData: any[];
 
-  lineChartOptions = this.chartOptions
-  lineChartLabels: string[] = ['10', '9', '8', '7', '6', '5', '4', '3', '2', '1'];
+  lineChartOptions = this.chartOptions;
+  lineChartLabels: string[] = ['10', '9', '8', '7', '6', '5', '4', '3', '2', '1'].reverse();
   lineChartType = 'line';
   lineChartLegend = true;
   lineChartData: any[];
@@ -83,10 +83,11 @@ export class NodeComponent implements OnInit, AfterViewInit {
   getFramesData() {
     interval(30000).pipe(startWith(0), switchMap(() => this.frameService.getLastFramesByNode(this.node)))
       .subscribe(resp => {
-        debugger;
         this.barChartData = [
           {data: [resp[0].continuousVoltage], label: 'Tensión Continua'},
           {data: [resp[0].networkVoltage], label: 'Tensión Red'}
+          // {data: [86], label: 'Tensión Continua'},
+          // {data: [220], label: 'Tensión Red'}
         ];
         const continuousVoltage = [];
         const networkVoltage = [];
@@ -97,6 +98,8 @@ export class NodeComponent implements OnInit, AfterViewInit {
         this.lineChartData = [
           {data: continuousVoltage, label: 'Tensión Continua', fill: false},
           {data: networkVoltage, label: 'Tensión Red', fill: false}
+          // {data: [86, 90, 88, 84, 91, 92, 87, 89, 92, 86], label: 'Tensión Continua', fill: false},
+          // {data: [220, 219, 221, 220, 220, 220, 218, 220, 222, 220], label: 'Tensión Red', fill: false}
         ];
         console.log('Request worked');
       }, err => {

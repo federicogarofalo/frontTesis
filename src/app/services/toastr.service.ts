@@ -13,16 +13,16 @@ export class ToastrService {
   showMessage(notification: Notification) {
     switch (notification.severity.priority) {
       case 'Critica':
-        this.toastr.errorToastr(this.getMessage(notification), 'Error');
+        this.toastr.errorToastr(this.getMessage(notification), 'Error: variable fuera de umbral');
         break;
       case 'Alta':
-        this.toastr.warningToastr(this.getMessage(notification), 'Error');
+        this.toastr.warningToastr(this.getMessage(notification), 'Error: variable fuera de umbral');
         break;
       case 'Media':
-        this.toastr.warningToastr(this.getMessage(notification), 'Error');
+        this.toastr.warningToastr(this.getMessage(notification), 'Error: variable fuera de umbral');
         break;
       case 'Baja':
-        this.toastr.infoToastr(this.getMessage(notification), 'Error');
+        this.toastr.infoToastr(this.getMessage(notification), 'Error: variable fuera de umbral');
         break;
     }
   }
