@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  doLogin() { debugger;
+  doLogin() {
     const loginModel = {
       username: this.username,
       password: this.password

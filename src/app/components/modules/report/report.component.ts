@@ -120,6 +120,5 @@ export class ReportComponent implements OnInit, AfterViewInit {
   }
 
   changeData(tableData) {
-    debugger;
   }
 }

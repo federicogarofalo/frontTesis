@@ -74,7 +74,7 @@
                   </thead>
                   <tbody>
                   <tr *ngFor="let threshold of thresholds" (keyup.enter)="updateThreshold(threshold)"
-                      (keyup.esc)="cancelEdition(threshold)">
+                      (keyup.esc)="cancelEdition(threshold)" [ngClass]="threshold.node ? 'table-success' : ''">
                     <td>{{ variable.getHumanRedableName(threshold.variableName) }}</td>
                     <td>{{ threshold.lastModification }}</td>
                     <td>

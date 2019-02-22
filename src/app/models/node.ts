@@ -4,6 +4,7 @@ export class Node {
   number: number;
   isActive: boolean;
   description: string;
+  working: boolean;
 
   constructor(params: any) {
     this.id = params.id;
@@ -11,5 +12,6 @@ export class Node {
     this.number = params.number;
     this.isActive = params.isActive;
     this.description = params.description;
+    this.working = params.working;
   }
 }

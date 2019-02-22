@@ -15,6 +15,11 @@
                   <th scope="col">Descripción</th>
                   <th scope="col">Activo</th>
                   <th scope="col"></th>
+                  <th>
+                    <button type="button" class="mb-1 btn btn-outline btn-dropbox float-right" (click)="createNewNode()">
+                      <i class="mdi mdi-plus"></i>
+                    </button>
+                  </th>
                 </tr>
                 </thead>
               <tbody>
@@ -25,7 +30,13 @@
                       <option [value]="module" *ngFor="let module of modules">{{ module }}</option>
                     </select>
                   </td>
-                  <td>{{ node.number }}</td>
+                  <td>
+                    <span [hidden]="node['editMode']">{{ node.number }}</span>
+                    <input numbers-only type="number"
+                           [hidden]="!node['editMode'] && !node.id" class="form-control"
+                           [(ngModel)]="node.number"
+                           required="true" />
+                  </td>
                   <td>
                     <span [hidden]="node['editMode']">{{ node.description }}</span>
                     <input type="text" name="description"

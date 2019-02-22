@@ -28,17 +28,35 @@ export class NodesConfigComponent implements OnInit {
   }
 
   updateNode(node: Node) {
-    this.nodeService.updateNode(node).subscribe(res => {
-      node = res;
-      node['editMode'] = false;
-    }, err => {
-      console.log(err);
-    });
+    if (node.id) {
+      this.nodeService.updateNode(node).subscribe(res => {
+        node = res;
+        node['editMode'] = false;
+      }, err => {
+        console.log(err);
+      });
+    } else {
+      this.nodeService.createNode(node).subscribe(res => {
+        node = res;
+        node['editMode'] = false;
+      }, err => {
+        console.log(err);
+      });
+    }
   }
 
   cancelEdition(node: Node) {
+    if (!node.id) {
+      this.nodes.pop();
+      return;
+    }
     Object.assign(node, node['originalValue']);
     node['editMode'] = false;
   }
 
+  createNewNode() {
+    const newNode = new Node({});
+    this.nodes.push(newNode);
+    this.editNode(newNode);
+  }
 }

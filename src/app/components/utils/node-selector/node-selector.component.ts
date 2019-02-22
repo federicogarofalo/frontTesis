@@ -19,7 +19,7 @@ export class NodeSelectorComponent implements OnInit {
 
   ngOnInit() {
     this.dataReady = new Subject();
-    this.nodeService.getNodes().subscribe(nodes => {
+    this.nodeService.getActiveNodes().subscribe(nodes => {
       this.nodes = nodes;
       this.value = this.value ? this.value : this.nodes[0];
       this.dataReady.next(nodes);

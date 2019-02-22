@@ -22,6 +22,13 @@ export class NodeService extends AbstractHttpService {
     })));
   }
 
+  getActiveNodes(): Observable<Node[]> {
+    return this.http.get<Node[]>(this.baseUrl + '/nodosActivos').pipe(
+      map(res => _.map(res, function(item) {
+        return new Node(item);
+      })));
+  }
+
   updateNode(node: Node): Observable<Node> {
     return this.http.put<Node>(this.baseUrl + '/nodo', node);
   }

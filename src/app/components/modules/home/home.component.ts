@@ -3,6 +3,9 @@ import {FrameService} from '../../../services/frame.service';
 import * as _ from 'lodash';
 import {interval} from 'rxjs';
 import {startWith, switchMap} from 'rxjs/operators';
+import {NodeHistoryService} from '../../../services/node-history.service';
+import {NodeHistory} from '../../../models/node-history';
+import {NodeService} from '../../../services/node.service';
 
 @Component({
   selector: 'app-home',
@@ -48,7 +51,12 @@ export class HomeComponent implements OnInit {
   lineChartLegend = true;
   lineChartData: any[];
 
-  constructor(private frameService: FrameService) { }
+  nodeHistory: NodeHistory[];
+  activeNodesPercentage = 100;
+  someNodesNotWorking = false;
+
+  constructor(private frameService: FrameService, private nodeService: NodeService,
+              private nodeHistoryService: NodeHistoryService) { }
 
   ngOnInit() {
     this.getNodesPower();
@@ -58,7 +66,6 @@ export class HomeComponent implements OnInit {
   getNodesPower() {
     interval(30000).pipe(startWith(0), switchMap(() => this.frameService.getNodesPower()))
       .subscribe(resp => {
-        debugger;
       const self = this;
       this.nodesPower = {continuousPower: 0, networkPower: 0};
       _.forEach(resp, function(frame) {
@@ -70,9 +77,8 @@ export class HomeComponent implements OnInit {
         {data: [this.nodesPower.continuousPower], label: 'Potencia Continua'},
         {data: [this.nodesPower.networkPower], label: 'Potencia Red'}
       ];
-      console.log('Request worked');
     }, err => {
-      console.log('Request did not work');
+      console.log(err);
     });
   }
 
@@ -98,7 +104,31 @@ export class HomeComponent implements OnInit {
           {data: this.networkPower, label: 'Potencia Red', fill: false}
         ];
       }, err => {
-        console.log('Request did not work');
+        console.log(err);
+      });
+  }
+
+  showNodesHistory() {
+    this.nodeHistoryService.getNodesHistory().subscribe(history => {
+      this.nodeHistory = history;
+    });
+  }
+
+  getActiveNodes() {
+    interval(30000).pipe(startWith(0), switchMap(() => this.nodeService.getActiveNodes()))
+      .subscribe(resp => {
+        let count = 0;
+        _.forEach(resp, function(node) {
+          if (!node.working) {
+            count ++;
+          }
+        });
+        this.activeNodesPercentage = count !== 0 ? count * 100 / resp.length : 100;
+        if (this.activeNodesPercentage !== 100) {
+          this.someNodesNotWorking = true;
+        }
+      }, err => {
+        console.log(err);
       });
   }
 }
