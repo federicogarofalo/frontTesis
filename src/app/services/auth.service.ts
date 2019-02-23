@@ -36,4 +36,14 @@ export class AuthService extends AbstractHttpService {
     }
     return false;
   }
+
+  isAdmin() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user.role.type === 'ROLE_ADMINISTRADOR';
+  }
+
+  isAdvanced() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user.role.type === 'ROLE_AVANZADO';
+  }
 }

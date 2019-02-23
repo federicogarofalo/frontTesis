@@ -10,6 +10,8 @@ import {FrameService} from '../../../services/frame.service';
 import {interval} from 'rxjs';
 import {startWith, switchMap} from 'rxjs/operators';
 import * as _ from 'lodash';
+import {AuthService} from '../../../services/auth.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-node',
@@ -53,7 +55,8 @@ export class NodeComponent implements OnInit, AfterViewInit {
   @ViewChild(NodeSelectorComponent) nodeSelector;
 
   constructor(private thresholdService: ThresholdService, private severityService: SeverityService,
-              public variable: VariableService, private frameService: FrameService) { }
+              public variable: VariableService, private frameService: FrameService, public auth: AuthService,
+              private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.severityService.getSeverities().subscribe( severities => {
@@ -113,9 +116,9 @@ export class NodeComponent implements OnInit, AfterViewInit {
   }
 
   updateThreshold(threshold: Threshold) {
-    threshold.lastModification = this.getLocalISOTime();
     this.thresholdService.updateThreshold(threshold).subscribe(res => {
       Object.assign(threshold, res);
+      threshold.lastModification = this.datePipe.transform(new Date(res.lastModification), 'yyyy-MM-dd');
       threshold['editMode'] = false;
     }, err => {
       console.log(err);
@@ -125,12 +128,6 @@ export class NodeComponent implements OnInit, AfterViewInit {
   cancelEdition(threshold) {
     Object.assign(threshold, threshold['originalValue']);
     threshold['editMode'] = false;
-  }
-
-  getLocalISOTime() {
-    const tzOffset = (new Date()).getTimezoneOffset() * 60000,
-      localISOTime = (new Date(Date.now() - tzOffset)).toISOString().slice(0, -1);
-    return localISOTime.split('T')[0];
   }
 
   onNodeChange(node: Node) {

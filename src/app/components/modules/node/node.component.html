@@ -13,7 +13,7 @@
                 <a class="nav-link active" id="icon-home-tab" data-toggle="tab" href="#icon-home" role="tab" aria-controls="icon-home" aria-selected="true">
                   <i class="mdi mdi-chart-line mr-1"></i> Monitoreo</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" *ngIf="auth.isAdmin()">
                 <a class="nav-link" id="icon-profile-tab" data-toggle="tab" href="#icon-profile" role="tab" aria-controls="icon-profile"
                    aria-selected="false">
                   <i class="mdi mdi-settings mr-1"></i> Configuración</a>

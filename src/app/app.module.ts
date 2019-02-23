@@ -36,6 +36,7 @@ import { ThresholdService } from './services/threshold.service';
 import { NodeComponent } from './components/modules/node/node.component';
 import { UserComponent } from './components/modules/user/user.component';
 import { ReportComponent } from './components/modules/report/report.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { ReportComponent } from './components/modules/report/report.component';
     NotificationService,
     SeverityService,
     ThresholdService,
+    DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

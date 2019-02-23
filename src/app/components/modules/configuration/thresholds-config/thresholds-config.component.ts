@@ -4,6 +4,7 @@ import {Threshold} from '../../../../models/threshold';
 import {Severity} from '../../../../models/severity';
 import {SeverityService} from '../../../../services/severity.service';
 import {VariableService} from '../../../../services/variable.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-thresholds-config',
@@ -16,7 +17,7 @@ export class ThresholdsConfigComponent implements OnInit {
   severities: Severity[];
 
   constructor(private thresholdService: ThresholdService, private severityService: SeverityService,
-              public variable: VariableService) { }
+              public variable: VariableService, private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.thresholdService.getThresholds().subscribe(thresholds => {
@@ -37,9 +38,9 @@ export class ThresholdsConfigComponent implements OnInit {
   }
 
   updateThreshold(threshold: Threshold) {
-    threshold.lastModification = this.getLocalISOTime();
-    this.thresholdService.updateThreshold(threshold).subscribe(res => { debugger;
+    this.thresholdService.updateThreshold(threshold).subscribe(res => {
       Object.assign(threshold, res);
+      threshold.lastModification = this.datePipe.transform(new Date(res.lastModification), 'yyyy-MM-dd');
       threshold['editMode'] = false;
     }, err => {
       console.log(err);
@@ -49,11 +50,5 @@ export class ThresholdsConfigComponent implements OnInit {
   cancelEdition(threshold: Threshold) {
     Object.assign(threshold, threshold['originalValue']);
     threshold['editMode'] = false;
-  }
-
-  getLocalISOTime() {
-    const tzOffset = (new Date()).getTimezoneOffset() * 60000,
-      localISOTime = (new Date(Date.now() - tzOffset)).toISOString().slice(0, -1);
-    return localISOTime.split('T')[0];
   }
 }

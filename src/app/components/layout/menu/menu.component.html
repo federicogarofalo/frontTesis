@@ -37,7 +37,7 @@
           </a>
         </li>
 
-        <li  class="has-sub" >
+        <li  class="has-sub" *ngIf="auth.isAdvanced() || auth.isAdmin()">
           <a class="sidenav-item-link" (click)="redirectTo('nodos')" href="javascript:void(0)" data-toggle="collapse" data-target="#charts"
              aria-expanded="false" aria-controls="charts">
             <i class="mdi mdi-access-point-network"></i>
@@ -45,7 +45,7 @@
           </a>
         </li>
 
-        <li  class="has-sub" >
+        <li  class="has-sub" *ngIf="auth.isAdmin()">
           <a class="sidenav-item-link" (click)="redirectTo('alertas')" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
              aria-expanded="false" aria-controls="pages">
             <i class="mdi mdi-alert-circle-outline"></i>
@@ -53,7 +53,7 @@
           </a>
         </li>
 
-        <li  class="has-sub" >
+        <li  class="has-sub" *ngIf="auth.isAdvanced() ||auth.isAdmin()">
           <a class="sidenav-item-link" (click)="redirectTo('historicos')" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
              aria-expanded="false" aria-controls="pages">
             <i class="mdi mdi-chart-line"></i>
@@ -61,7 +61,7 @@
           </a>
         </li>
 
-        <li  class="has-sub" >
+        <li  class="has-sub" *ngIf="auth.isAdmin()">
           <a class="sidenav-item-link" (click)="redirectTo('usuarios')" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
              aria-expanded="false" aria-controls="pages">
             <i class="mdi mdi-account"></i>
@@ -69,7 +69,7 @@
           </a>
         </li>
 
-        <li  class="has-sub" >
+        <li  class="has-sub" *ngIf="auth.isAdmin()">
           <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#documentation"
              aria-expanded="false" aria-controls="documentation">
             <i class="mdi mdi-settings"></i>

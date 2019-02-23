@@ -10,7 +10,7 @@ export class User {
   role: Role;
   accountState: AccountState;
 
-  constructor(params) { debugger;
+  constructor(params) {
     this.id = params.id;
     this.userName = params.username;
     this.firstName = params.firstName;
