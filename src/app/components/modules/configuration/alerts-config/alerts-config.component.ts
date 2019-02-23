@@ -28,7 +28,7 @@ export class AlertsConfigComponent implements OnInit {
 
   updateNode(severity: Severity) {
     this.severityService.updateSeverity(severity).subscribe(res => {
-      severity = res;
+      Object.assign(severity, res);
       severity['editMode'] = false;
     }, err => {
       console.log(err);

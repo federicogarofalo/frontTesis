@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
   lineChartData: any[];
 
   nodeHistory: NodeHistory[];
-  activeNodesPercentage = 100;
+  activeNodesPercentage: number|string = 100;
   someNodesNotWorking = false;
 
   constructor(private frameService: FrameService, private nodeService: NodeService,
@@ -61,6 +61,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getNodesPower();
     this.getLastNodesPower();
+    this.getActiveNodes();
   }
 
   getNodesPower() {
@@ -111,11 +112,12 @@ export class HomeComponent implements OnInit {
   showNodesHistory() {
     this.nodeHistoryService.getNodesHistory().subscribe(history => {
       this.nodeHistory = history;
+      this.someNodesNotWorking = false;
     });
   }
 
   getActiveNodes() {
-    interval(30000).pipe(startWith(0), switchMap(() => this.nodeService.getActiveNodes()))
+    interval(30000*10).pipe(startWith(0), switchMap(() => this.nodeService.getActiveNodes()))
       .subscribe(resp => {
         let count = 0;
         _.forEach(resp, function(node) {
@@ -123,7 +125,7 @@ export class HomeComponent implements OnInit {
             count ++;
           }
         });
-        this.activeNodesPercentage = count !== 0 ? count * 100 / resp.length : 100;
+        this.activeNodesPercentage = count !== 0 ? Number(100 - count * 100 / resp.length).toFixed(2) : 100;
         if (this.activeNodesPercentage !== 100) {
           this.someNodesNotWorking = true;
         }

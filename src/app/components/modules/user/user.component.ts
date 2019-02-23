@@ -45,7 +45,7 @@ export class UserComponent implements OnInit {
 
   updateUser(user: User) {
     this.userService.updateUser(user).subscribe(res => {
-      user = res;
+      Object.assign(user, res);
       user['editMode'] = false;
     }, err => {
       console.log(err);

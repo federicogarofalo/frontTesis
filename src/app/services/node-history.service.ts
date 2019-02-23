@@ -16,7 +16,7 @@ export class NodeHistoryService extends AbstractHttpService {
   }
 
   getNodesHistory(): Observable<NodeHistory[]> {
-    return this.http.get<NodeHistory[]>(this.baseUrl + '/nodos').pipe(
+    return this.http.get<NodeHistory[]>(this.baseUrl + '/historialNodosHoy').pipe(
       map(res => _.map(res, function(item) {
         return new NodeHistory(item);
       })));

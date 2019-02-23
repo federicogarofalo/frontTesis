@@ -30,14 +30,14 @@ export class NodesConfigComponent implements OnInit {
   updateNode(node: Node) {
     if (node.id) {
       this.nodeService.updateNode(node).subscribe(res => {
-        node = res;
+        Object.assign(node, res);
         node['editMode'] = false;
       }, err => {
         console.log(err);
       });
     } else {
       this.nodeService.createNode(node).subscribe(res => {
-        node = res;
+        Object.assign(node, res);
         node['editMode'] = false;
       }, err => {
         console.log(err);

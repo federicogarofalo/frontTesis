@@ -10,13 +10,14 @@ export class User {
   role: Role;
   accountState: AccountState;
 
-  constructor(params) {
+  constructor(params) { debugger;
     this.id = params.id;
     this.userName = params.username;
     this.firstName = params.firstName;
     this.lastName = params.lastName;
     this.email = params.email;
-    this.role = params.authorities ? new Role(params.authorities[0]) : new Role(params.userProfile);
-    this.accountState = params.accountState ? new AccountState(params.estado) : params.accountState;
+    const role = params.authorities ? params.authorities[0] : params.role;
+    this.role = role !== null ? new Role(role) : role;
+    this.accountState = params.accountState ? new AccountState(params.accountState) : params.accountState;
   }
 }

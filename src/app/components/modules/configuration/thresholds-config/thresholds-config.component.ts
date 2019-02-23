@@ -38,8 +38,8 @@ export class ThresholdsConfigComponent implements OnInit {
 
   updateThreshold(threshold: Threshold) {
     threshold.lastModification = this.getLocalISOTime();
-    this.thresholdService.updateThreshold(threshold).subscribe(res => {
-      threshold = res;
+    this.thresholdService.updateThreshold(threshold).subscribe(res => { debugger;
+      Object.assign(threshold, res);
       threshold['editMode'] = false;
     }, err => {
       console.log(err);

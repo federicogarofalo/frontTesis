@@ -34,7 +34,7 @@
                   </select>
                 </td>
                 <td>
-                  <span [hidden]="user['editMode']">{{ user.role.type }}</span>
+                  <span *ngIf="user.role" [hidden]="user['editMode']">{{ user.role.type }}</span>
                   <select [hidden]="!user['editMode']" class="form-control" [(ngModel)]="user.role">
                     <option *ngFor="let role of roles"
                             [ngValue]="role">{{ role.type }}

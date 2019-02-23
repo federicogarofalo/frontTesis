@@ -12,7 +12,8 @@ export class ToastrService {
 
   showMessage(notification: Notification) {
     const toastrOptions = {
-      dismiss: 'click'
+      toastTimeout: 5000,
+      dismiss: 'auto'      
     };
     switch (notification.severity.priority) {
       case 'Critica':

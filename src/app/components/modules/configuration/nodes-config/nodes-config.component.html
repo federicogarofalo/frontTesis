@@ -32,8 +32,9 @@
                   </td>
                   <td>
                     <span [hidden]="node['editMode']">{{ node.number }}</span>
+                    <span [hidden]="!node['editMode']">{{ node.number }}</span>
                     <input numbers-only type="number"
-                           [hidden]="!node['editMode'] && !node.id" class="form-control"
+                           [hidden]="!(node['editMode'] && !node.id)" class="form-control"
                            [(ngModel)]="node.number"
                            required="true" />
                   </td>

@@ -9,7 +9,8 @@
           <div (click)="showNodesHistory()" class="icon rounded-circle mr-4"
                [ngClass]="someNodesNotWorking ? 'bg-warning' : 'bg-success'"
                data-toggle="modal" data-target="#exampleModalGrid" style="cursor: pointer">
-            <i class="mdi mdi-check text-white "></i>
+            <i *ngIf="!someNodesNotWorking" class="mdi mdi-check text-white "></i>
+            <i *ngIf="someNodesNotWorking" class="mdi mdi-alert-circle-outline text-white "></i>
           </div>
           <div class="media-body align-self-center">
             <div class="progress mb-3">

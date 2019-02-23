@@ -115,7 +115,7 @@ export class NodeComponent implements OnInit, AfterViewInit {
   updateThreshold(threshold: Threshold) {
     threshold.lastModification = this.getLocalISOTime();
     this.thresholdService.updateThreshold(threshold).subscribe(res => {
-      threshold = res;
+      Object.assign(threshold, res);
       threshold['editMode'] = false;
     }, err => {
       console.log(err);
