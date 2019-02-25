@@ -5,7 +5,6 @@ import {FrameService} from '../../../services/frame.service';
 import {NodeSelectorComponent} from '../../utils/node-selector/node-selector.component';
 import * as _ from 'lodash';
 import {FilteredFrame} from '../../../models/filtered-frame';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 interface ChartDataParams {
   type: number;
@@ -66,7 +65,7 @@ export class ReportComponent implements OnInit, AfterViewInit {
   @ViewChild('myModal') myModal: ElementRef;
 
 
-  constructor(private nodeService: NodeService, private frameService: FrameService, private modalService: NgbModal) { }
+  constructor(private nodeService: NodeService, private frameService: FrameService) { }
 
   ngOnInit() {
     this.defaultDateTo = new Date(Date.now() - this.tzOffset);
@@ -154,8 +153,6 @@ export class ReportComponent implements OnInit, AfterViewInit {
   getFrames(variableName: string, dateFrom: string, dateTo: string, hourFrom?: string, hourTo?: string) {
     this.frameService.getFilteredData(variableName, dateFrom, dateTo, this.node, hourFrom, hourTo).subscribe(res => {
       this.expandedDataFrames = res;
-      this.myModal.nativeElement.modal('show');
-      this.modalService.open(this.myModal);
     });
   }
 
