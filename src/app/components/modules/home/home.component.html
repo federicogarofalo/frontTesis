@@ -106,8 +106,8 @@
                   <tbody>
                   <tr *ngFor="let history of nodeHistory">
                     <td>{{ history.node.module + ' ' + history.node.number }}</td>
-                    <td>{{ history.control|date:"HH:mm:ss" }}</td>
-                    <td>{{ history.lastFrame }}</td>
+                    <td>{{ history.control|date:'dd/MM/yyyy HH:mm:ss' }}</td>
+                    <td>{{ history.lastFrame|date:'dd/MM/yyyy HH:mm:ss' }}</td>
                     <td>{{ history.description }}</td>
                   </tr>
                   </tbody>
