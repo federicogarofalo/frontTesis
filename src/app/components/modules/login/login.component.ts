@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
 import {User} from '../../../models/user';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,21 +12,15 @@ import {User} from '../../../models/user';
 export class LoginComponent implements OnInit {
 
   username: string;
-
   password: string;
 
   hasAccount = true;
 
-  newUser = {
-    name: '',
-    surname: '',
-    email: '',
-    userName: '',
-    pwd: '',
-    pwdConfirm: ''
-  };
+  newUser: User = new User({});
 
-  constructor(private authService: AuthService, private router: Router) { }
+  invalidCredentials: boolean;
+
+  constructor(private authService: AuthService, private router: Router, private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -43,6 +38,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['home']);
       },
       err => {
+        this.invalidCredentials = true;
       }
     );
   }
@@ -52,6 +48,10 @@ export class LoginComponent implements OnInit {
   }
 
   createUser() {
-
+    this.userService.createUser(this.newUser).subscribe(res => {
+      // Deberiamos mostrar mensaje de exito y redireccionar al login ?
+    }, err => {
+      // mostrar campos que fallaron
+    });
   }
 }

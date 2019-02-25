@@ -27,6 +27,9 @@
               <div class="form-group col-md-12 ">
                 <input [(ngModel)]="password" name="password" type="password" class="form-control input-lg"
                        id="password" placeholder="Contraseña">
+                <div class="invalid-feedback align-content-center" style="display: block" *ngIf="invalidCredentials">
+                  Usuario o contraseña incorrecto.
+                </div>
               </div>
               <div class="col-md-12">
                 <div class="d-flex my-2 justify-content-between">
@@ -53,22 +56,22 @@
           <form action="/index.html">
             <div class="row">
               <div class="form-group col-md-12 mb-4">
-                <input [(ngModel)]="newUser.name" name="newUser-name" type="text" class="form-control input-lg" id="name" aria-describedby="nameHelp" placeholder="Nombre">
+                <input [(ngModel)]="newUser.firstName" name="newUser-name" type="text" class="form-control input-lg" aria-describedby="nameHelp" placeholder="Nombre">
               </div>
               <div class="form-group col-md-12 mb-4">
-                <input [(ngModel)]="newUser.surname" name="newUser-surname" type="text" class="form-control input-lg" id="name" aria-describedby="nameHelp" placeholder="Apellido">
+                <input [(ngModel)]="newUser.lastName" name="newUser-surname" type="text" class="form-control input-lg" aria-describedby="nameHelp" placeholder="Apellido">
               </div>
               <div class="form-group col-md-12 mb-4">
-                <input [(ngModel)]="newUser.email" name="newUser-email" type="text" class="form-control input-lg" id="name" aria-describedby="nameHelp" placeholder="Email">
+                <input [(ngModel)]="newUser.email" name="newUser-email" type="text" class="form-control input-lg" aria-describedby="nameHelp" placeholder="Email">
               </div>
               <div class="form-group col-md-12 mb-4">
-                <input [(ngModel)]="newUser.userName" name="newUser-userName" type="email" class="form-control input-lg" id="email" aria-describedby="emailHelp" placeholder="Usuario">
+                <input [(ngModel)]="newUser.userName" name="newUser-userName" type="email" class="form-control input-lg" aria-describedby="emailHelp" placeholder="Usuario">
               </div>
               <div class="form-group col-md-12 ">
-                <input [(ngModel)]="newUser.pwd" name="newUser-pwd" type="password" class="form-control input-lg" id="password" placeholder="Contraseña">
+                <input [(ngModel)]="newUser.password" name="newUser-pwd" type="password" class="form-control input-lg" placeholder="Contraseña">
               </div>
               <div class="form-group col-md-12 ">
-                <input [(ngModel)]="newUser.pwdConfirm" name="newUser-pwdConfirm" type="password" class="form-control input-lg" id="cpassword" placeholder="Confirmar Contraseña">
+                <input name="newUser-pwdConfirm" type="password" class="form-control input-lg" id="cpassword" placeholder="Confirmar Contraseña">
               </div>
               <div class="col-md-12">
                 <button (click)="createUser()" type="submit" class="btn btn-lg btn-primary btn-block mb-4">Registrate</button>

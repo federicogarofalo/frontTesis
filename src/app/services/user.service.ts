@@ -25,4 +25,8 @@ export class UserService extends AbstractHttpService {
   updateUser(user: User): Observable<User> {
     return this.http.put<User>(this.baseUrl + '/api/usuario', user);
   }
+
+  createUser(user): Observable<User> {
+    return this.http.post<User>(this.baseUrl + '/api/usuario', user);
+  }
 }

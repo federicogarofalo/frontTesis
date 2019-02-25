@@ -9,6 +9,7 @@ export class User {
   email: string;
   role: Role;
   accountState: AccountState;
+  password: string;
 
   constructor(params) {
     this.id = params.id;
@@ -17,7 +18,8 @@ export class User {
     this.lastName = params.lastName;
     this.email = params.email;
     const role = params.authorities ? params.authorities[0] : params.role;
-    this.role = role !== null ? new Role(role) : role;
+    this.role = role != null ? new Role(role) : role;
     this.accountState = params.accountState ? new AccountState(params.accountState) : params.accountState;
+    this.password = params.password;
   }
 }
