@@ -128,8 +128,8 @@ export class NodeComponent implements OnInit, AfterViewInit {
   }
 
   revertSpecificThreshold(threshold: Threshold) {
-    this.thresholdService.deleteThreshold(threshold).subscribe(res => {
-      debugger;
+    this.thresholdService.deleteThreshold(threshold).subscribe(res => { debugger;
+      this.getThresholds();
     });
   }
 
