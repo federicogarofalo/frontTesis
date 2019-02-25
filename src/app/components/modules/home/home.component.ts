@@ -117,7 +117,7 @@ export class HomeComponent implements OnInit {
   }
 
   getActiveNodes() {
-    interval(30000 * 10).pipe(startWith(0), switchMap(() => this.nodeService.getActiveNodes()))
+    interval(30000 * 2).pipe(startWith(0), switchMap(() => this.nodeService.getActiveNodes()))
       .subscribe(resp => {
         let count = 0;
         _.forEach(resp, function(node) {

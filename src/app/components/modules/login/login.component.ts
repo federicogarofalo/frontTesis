@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   newUser: User = new User({});
 
   invalidCredentials: boolean;
+  success: boolean;
 
   constructor(private authService: AuthService, private router: Router, private userService: UserService) { }
 
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
 
   createUser() {
     this.userService.createUser(this.newUser).subscribe(res => {
-      // Deberiamos mostrar mensaje de exito y redireccionar al login ?
+      this.success = true;
     }, err => {
       // mostrar campos que fallaron
     });

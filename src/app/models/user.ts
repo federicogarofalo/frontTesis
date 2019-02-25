@@ -3,7 +3,7 @@ import {AccountState} from './account-state';
 
 export class User {
   id: number;
-  userName: string;
+  username: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -13,7 +13,7 @@ export class User {
 
   constructor(params) {
     this.id = params.id;
-    this.userName = params.username;
+    this.username = params.username;
     this.firstName = params.firstName;
     this.lastName = params.lastName;
     this.email = params.email;
