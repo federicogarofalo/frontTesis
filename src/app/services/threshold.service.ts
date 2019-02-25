@@ -27,4 +27,12 @@ export class ThresholdService extends AbstractHttpService {
   updateThreshold(threshold: Threshold): Observable<Threshold> {
     return this.http.put<Threshold>(this.baseUrl + '/umbral', threshold);
   }
+
+  createThreshold(threshold: Threshold): Observable<Threshold> {
+    return this.http.post<Threshold>(this.baseUrl + '/umbral', threshold);
+  }
+
+  deleteThreshold(threshold: Threshold): Observable<Threshold> {
+    return this.http.delete<Threshold>(this.baseUrl + '/deleteUmbralEspecifico/' + threshold.id);
+  }
 }

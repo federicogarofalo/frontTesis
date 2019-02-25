@@ -115,13 +115,21 @@ export class NodeComponent implements OnInit, AfterViewInit {
     threshold['editMode'] = true;
   }
 
-  updateThreshold(threshold: Threshold) {
-    this.thresholdService.updateThreshold(threshold).subscribe(res => {
+  saveSpecificThreshold(threshold: Threshold) {
+    threshold.node = this.node;
+    delete threshold.id;
+    this.thresholdService.createThreshold(threshold).subscribe(res => {
       Object.assign(threshold, res);
       threshold.lastModification = this.datePipe.transform(new Date(res.lastModification), 'yyyy-MM-dd');
       threshold['editMode'] = false;
     }, err => {
       console.log(err);
+    });
+  }
+
+  revertSpecificThreshold(threshold: Threshold) {
+    this.thresholdService.deleteThreshold(threshold).subscribe(res => {
+      debugger;
     });
   }
 

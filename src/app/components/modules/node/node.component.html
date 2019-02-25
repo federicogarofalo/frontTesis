@@ -119,10 +119,10 @@
                             <a (click)="editNode(threshold)" href="javascript:void(0)">Editar</a>
                           </li>
                           <li class="dropdown-item" *ngIf="!threshold['editMode'] && threshold.node">
-                            <a (click)="editNode(threshold)" href="javascript:void(0)">Revertir</a>
+                            <a (click)="revertSpecificThreshold(threshold)" href="javascript:void(0)">Revertir</a>
                           </li>
                           <li class="dropdown-item" *ngIf="threshold['editMode']">
-                            <a (click)="updateThreshold(threshold)" href="javascript:void(0)">Guardar</a>
+                            <a (click)="saveSpecificThreshold(threshold)" href="javascript:void(0)">Guardar</a>
                           </li>
                           <li class="dropdown-item" *ngIf="threshold['editMode']">
                             <a (click)="cancelEdition(threshold)" href="javascript:void(0)">Cancelar</a>
